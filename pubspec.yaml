@@ -1,0 +1,16 @@
+name: disposebag
+description: A starting point for Dart libraries or applications.
+# version: 1.0.0
+# homepage: https://www.example.com
+# author: Admin <hoc081098@gmail.com>
+
+environment:
+  sdk: '>=2.2.0 <3.0.0'
+
+#dependencies:
+#  path: ^1.4.1
+
+dev_dependencies:
+  rxdart:
+  pedantic: ^1.0.0
+  test: ^1.0.0
