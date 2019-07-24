@@ -17,14 +17,14 @@ main() async {
     controller2.stream.listen((i) => print('Controller2 $i')),
   ]);
 
-  for(var i = 0; i < 100; i++) {
+  for (var i = 0; i < 100; i++) {
     controller2.add(i);
   }
 
   /// Delay to see output
   await Future.delayed(const Duration(seconds: 3));
 
-  /// Dispose all stream subscriptions, close all stream controllers 
+  /// Dispose all stream subscriptions, close all stream controllers
   await bag.dispose();
   print("Bag disposed. It's all good");
 
