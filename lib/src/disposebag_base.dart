@@ -1,58 +1,50 @@
 import 'dart:async';
 
 class DisposeBag {
-  final List<dynamic> _list = [];
+  final Set<dynamic> _resources = {};
   bool _isDisposed = false;
   bool _isDisposing = false;
 
-  DisposeBag([List<dynamic> disposables = const []]) {
+  DisposeBag([Iterable<dynamic> disposables = const []]) {
     _addAll(disposables);
   }
 
-  void _addAll(List disposables) {
+  void _addAll(Iterable<dynamic> disposables) {
     for (final item in disposables) {
       _addOne(item);
     }
   }
 
-  void _addOne(item) {
+  /// Add one item to resouces, only add if item is [StreamSubscription] or item is [Sink]
+  void _addOne(dynamic item) {
+    if (item == null) {
+      return;
+    }
+
     if (item is StreamSubscription || item is Sink) {
-      _list.add(item);
+      _resources.add(item);
     }
   }
 
   Future<dynamic> _disposeOne(dynamic disposable) async {
     if (disposable is StreamSubscription) {
-      return disposable.cancel();
+      return await disposable.cancel();
     }
     if (disposable is StreamSink) {
-      return disposable.close();
+      return await disposable.close();
     }
     if (disposable is Sink) {
       disposable.close();
+      return null;
     }
     return null;
   }
 
-  /// Dispose the resource, the operation should be idempotent.
-  Future<void> dispose() async {
-    if (_isDisposed || _isDisposing) {
-      return;
-    }
-
-    /// Start dispose
-    _isDisposing = true;
-
-    /// Await dispose
-    await Future.wait(_list.map(_disposeOne).where((v) => v != null));
-
-    /// End dispose
-    _isDisposing = false;
-    _isDisposed = true;
-  }
-
   /// Returns true if this resource has been disposed.
   bool get isDisposed => _isDisposed;
+
+  /// Returns the number of currently held Disposables.
+  int get length => _isDisposed ? 0 : _resources.length;
 
   /// Adds a disposable to this container or disposes it if the container has been disposed.
   Future<bool> add(dynamic disposable) async {
@@ -66,7 +58,7 @@ class DisposeBag {
   }
 
   /// Atomically adds the given array of Disposables to the container or disposes them all if the container has been disposed.
-  Future<bool> addAll(List<dynamic> disposables) async {
+  Future<bool> addAll(Iterable<dynamic> disposables) async {
     if (_isDisposed || _isDisposing) {
       await Future.wait(disposables.map(_disposeOne));
       return false;
@@ -76,6 +68,24 @@ class DisposeBag {
     }
   }
 
+  /// Removes and disposes the given disposable if it is part of this container.
+  Future<bool> remove(dynamic disposable) async {
+    if (await delete(disposable)) {
+      await _disposeOne(disposable);
+      return true;
+    }
+    return false;
+  }
+
+  /// Removes (but does not dispose) the given disposable if it is part of this container.
+  Future<bool> delete(dynamic disposable) async {
+    if (_isDisposed || _isDisposing) {
+      return false;
+    }
+    return _resources.remove(disposable);
+  }
+
+  /// Atomically clears the container, then disposes all the previously contained Disposables.
   Future<void> clear() async {
     if (_isDisposed || _isDisposing) {
       return;
@@ -85,10 +95,27 @@ class DisposeBag {
     _isDisposing = true;
 
     /// Await dispose
-    await Future.wait(_list.map(_disposeOne).where((v) => v != null));
+    await Future.wait(_resources.map(_disposeOne).where((v) => v != null));
 
     /// End dispose
     _isDisposing = false;
-    _list.clear();
+    _resources.clear();
+  }
+
+  /// Dispose the resource, the operation should be idempotent.
+  Future<void> dispose() async {
+    if (_isDisposed || _isDisposing) {
+      return;
+    }
+
+    /// Start dispose
+    _isDisposing = true;
+
+    /// Await dispose
+    await Future.wait(_resources.map(_disposeOne).where((v) => v != null));
+
+    /// End dispose
+    _isDisposing = false;
+    _isDisposed = true;
   }
 }
