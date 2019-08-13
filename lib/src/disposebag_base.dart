@@ -1,7 +1,7 @@
 import 'dart:async';
 
 class DisposeBag {
-  final Set<dynamic> _resources = {};
+  final _resources = <dynamic>{}; // <StreamSubscription | Sink>{}
   bool _isDisposed = false;
   bool _isDisposing = false;
 
@@ -16,22 +16,24 @@ class DisposeBag {
   }
 
   /// Add one item to resouces, only add if item is [StreamSubscription] or item is [Sink]
-  void _addOne(dynamic item) {
+  bool _addOne(dynamic item) {
     if (item == null) {
-      return;
+      return false;
     }
 
     if (item is StreamSubscription || item is Sink) {
-      _resources.add(item);
+      return _resources.add(item);
     }
+
+    return false;
   }
 
-  Future<dynamic> _disposeOne(dynamic disposable) async {
+  Future<dynamic> _disposeOne(dynamic disposable) {
     if (disposable is StreamSubscription) {
-      return await disposable.cancel();
+      return disposable.cancel();
     }
     if (disposable is StreamSink) {
-      return await disposable.close();
+      return disposable.close();
     }
     if (disposable is Sink) {
       disposable.close();
@@ -52,8 +54,7 @@ class DisposeBag {
       await _disposeOne(disposable);
       return false;
     } else {
-      _addOne(disposable);
-      return true;
+      return _addOne(disposable);
     }
   }
 
@@ -112,7 +113,10 @@ class DisposeBag {
     _isDisposing = true;
 
     /// Await dispose
-    await Future.wait(_resources.map(_disposeOne).where((v) => v != null));
+    final tasks = _resources.map(_disposeOne).where((v) => v != null).toList();
+    for (var t in tasks) {
+      await t;
+    }
 
     /// End dispose
     _isDisposing = false;
