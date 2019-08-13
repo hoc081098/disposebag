@@ -1,11 +1,10 @@
 import 'dart:async';
 
-import 'package:rxdart/rxdart.dart';
 import 'package:disposebag/disposebag.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('$DisposeBag test', () {
+  group('DisposeBag', () {
     //   test('A', () async {
     //     final subject = PublishSubject<int>();
 
@@ -70,23 +69,131 @@ void main() {
     //     print('[DONE]');
     //   });
 
-    test('DisposeBag.add', () async {
-      final observable = Observable.fromIterable([1, 2, 3]).shareValue();
+    group('DisposeBag.add', () {
+      test('DisposeBag.add.subscription', () async {
+        final stream =
+            Stream.periodic(const Duration(milliseconds: 100)).take(10);
 
-      var bag = DisposeBag();
+        final bag = DisposeBag();
 
-      await bag.add(observable.listen(null));
-      await bag.add(observable.listen(null));
-      await bag.add(observable.listen(null));
+        var count = 0;
+        await bag.add(
+          stream.asyncMap(
+            (_) async {
+              ++count;
+              if (count == 5) {
+                await bag.dispose();
+              }
+            },
+          ).listen(null),
+        );
 
-      print(bag.length);
-      await bag.dispose();
+        await Future.delayed(const Duration(milliseconds: 100 * 10));
 
-      expect(
-        observable,
-        neverEmits(anything),
-      );
-      // await bag.dispose();
-    }, timeout: Timeout(Duration(seconds: 1000000000)));
+        expect(count, 5);
+      });
+
+      test('DisposeBag.add.subscription.isDisposed', () async {
+        final stream =
+            Stream.periodic(const Duration(milliseconds: 100)).take(10);
+
+        final bag = DisposeBag();
+        await bag.dispose();
+
+        var count = 0;
+        StreamSubscription subscription;
+        subscription = stream.asyncMap(
+          (_) async {
+            ++count;
+            if (count == 5) {
+              await bag.add(subscription);
+            }
+          },
+        ).listen(null);
+
+        await Future.delayed(const Duration(milliseconds: 100 * 10));
+        expect(count, 5);
+      });
+
+      test('DisposeBag.add.sink', () async {
+        final controller = StreamController<int>()..stream.listen(null);
+        final bag = DisposeBag();
+
+        await bag.add(controller);
+        await bag.dispose();
+
+        expect(controller.isClosed, true);
+      });
+
+      test('DisposeBag.add.sink.isDisposed', () async {
+        final controller = StreamController<int>()..stream.listen(null);
+
+        final bag = DisposeBag();
+        await bag.dispose();
+
+        expect(await bag.add(controller), false);
+        expect(controller.isClosed, true);
+      });
+    });
+
+    group('DisposeBag.addAll', () {
+      test('DisposeBag.addAll.isDisposed', () async {
+        final stream =
+            Stream.periodic(const Duration(milliseconds: 100)).take(10);
+        final controller = StreamController<int>()..stream.listen(null);
+
+        final bag = DisposeBag();
+        await bag.dispose();
+
+        var count = 0;
+        StreamSubscription subscription;
+        subscription = stream.asyncMap(
+          (_) async {
+            ++count;
+            if (count == 5) {
+              await bag.addAll(
+                [
+                  subscription,
+                  controller,
+                ],
+              );
+            }
+          },
+        ).listen(null);
+
+        await Future.delayed(const Duration(milliseconds: 100 * 10));
+        expect(count, 5);
+        expect(controller.isClosed, isTrue);
+      });
+
+      test('DisposeBag.addAll', () async {
+        final stream =
+            Stream.periodic(const Duration(milliseconds: 100)).take(10);
+        final controller = StreamController<int>()..stream.listen(null);
+
+        final bag = DisposeBag();
+
+        var count = 0;
+        await bag.addAll(
+          [
+            stream.asyncMap(
+              (_) async {
+                ++count;
+                if (count == 5) {
+                  await bag.dispose();
+                  expect(controller.isClosed, isTrue);
+                }
+              },
+            ).listen(
+              expectAsync1(
+                (_) {},
+                count: 4,
+              ),
+            ),
+            controller,
+          ],
+        );
+      });
+    });
   });
 }
