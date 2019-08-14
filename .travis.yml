@@ -1,0 +1,10 @@
+language: dart
+os:
+  - linux
+sudo: false
+script:
+  - pub get
+  - pub run test test/disposebag_test.dart
+cache:
+  directories:
+    - $HOME/.pub-cache
