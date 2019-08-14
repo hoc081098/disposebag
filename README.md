@@ -2,7 +2,7 @@
 
 ### Author: [Petrus Nguyễn Thái Học](https://github.com/hoc081098)
 
-![Pub](https://img.shields.io/pub/v/disposebag)
+![Pub](https://img.shields.io/pub/v/disposebag) [![Build Status](https://travis-ci.org/hoc081098/disposebag.svg?branch=master)](https://travis-ci.org/hoc081098/disposebag)
 
 A package to help disposing Streams and closing Sinks
 
