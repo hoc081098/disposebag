@@ -5,70 +5,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('DisposeBag', () {
-    //   test('A', () async {
-    //     final subject = PublishSubject<int>();
-
-    //     var disposeBag = DisposeBag(
-    //       [
-    //         Observable.periodic(const Duration(milliseconds: 500), (i) => i)
-    //             .listen(subject.add),
-    //         subject.listen(print),
-    //         subject,
-    //       ],
-    //     );
-
-    //     await Future.delayed(const Duration(seconds: 3));
-
-    //     await disposeBag.dispose();
-    //     print('[DISPOSED]');
-    //     expect(disposeBag.isDisposed, isTrue);
-
-    //     expect(await disposeBag.add(subject), isFalse);
-
-    //     expect(
-    //       await disposeBag.add(
-    //         Stream.periodic(
-    //           const Duration(microseconds: 1),
-    //           (i) => i,
-    //         ).listen(print),
-    //       ),
-    //       isFalse,
-    //     );
-
-    //     await Future.delayed(const Duration(seconds: 3));
-    //     print('[DONE]');
-    //   });
-
-    //   test('B', () async {
-    //     final subject = PublishSubject<int>();
-
-    //     var disposeBag = DisposeBag(
-    //       [
-    //         Observable.periodic(const Duration(milliseconds: 500), (i) => i)
-    //             .listen(subject.add),
-    //         subject.listen(print),
-    //         subject,
-    //       ],
-    //     );
-
-    //     await Future.delayed(const Duration(seconds: 3));
-
-    //     await disposeBag.clear();
-    //     print('[CLEARED]');
-    //     expect(disposeBag.isDisposed, isFalse);
-
-    //     await disposeBag.add(
-    //       Observable.periodic(const Duration(milliseconds: 500), (i) => i)
-    //           .listen(print),
-    //     );
-
-    //     await Future.delayed(const Duration(seconds: 2));
-    //     await disposeBag.clear();
-    //     print('[CLEARED]');
-    //     await Future.delayed(const Duration(seconds: 2));
-    //     print('[DONE]');
-    //   });
-
     group('DisposeBag.add', () {
       test('DisposeBag.add.subscription', () async {
         final stream =
@@ -85,12 +21,13 @@ void main() {
                 await bag.dispose();
               }
             },
-          ).listen(null),
+          ).listen(
+            expectAsync1(
+              (_) {},
+              count: 4,
+            ),
+          ),
         );
-
-        await Future.delayed(const Duration(milliseconds: 100 * 10));
-
-        expect(count, 5);
       });
 
       test('DisposeBag.add.subscription.isDisposed', () async {
@@ -109,10 +46,12 @@ void main() {
               await bag.add(subscription);
             }
           },
-        ).listen(null);
-
-        await Future.delayed(const Duration(milliseconds: 100 * 10));
-        expect(count, 5);
+        ).listen(
+          expectAsync1(
+            (_) {},
+            count: 4,
+          ),
+        );
       });
 
       test('DisposeBag.add.sink', () async {
@@ -157,13 +96,15 @@ void main() {
                   controller,
                 ],
               );
+              expect(controller.isClosed, isTrue);
             }
           },
-        ).listen(null);
-
-        await Future.delayed(const Duration(milliseconds: 100 * 10));
-        expect(count, 5);
-        expect(controller.isClosed, isTrue);
+        ).listen(
+          expectAsync1(
+            (_) {},
+            count: 4,
+          ),
+        );
       });
 
       test('DisposeBag.addAll', () async {
@@ -192,6 +133,126 @@ void main() {
             ),
             controller,
           ],
+        );
+      });
+    });
+    group('DisposeBag.delete', () {
+      test('DisposeBag.delete', () async {
+        final subscription = Stream.empty().listen(null);
+        final controller = StreamController<int>()..stream.listen(null);
+        final bag = DisposeBag([subscription, controller]);
+
+        expect(await bag.delete(subscription), isTrue);
+        expect(await bag.delete(controller), isTrue);
+
+        expect(controller.isClosed, isFalse);
+        expect(bag.length, 0);
+      });
+
+      test('DisposeBag.delete.isDisposed', () async {
+        final subscription = Stream.empty().listen(null);
+        final controller = StreamController<int>()..stream.listen(null);
+
+        final bag = DisposeBag([subscription, controller]);
+        await bag.dispose();
+
+        expect(bag.length, 0);
+        expect(controller.isClosed, isTrue);
+
+        expect(await bag.delete(subscription), isFalse);
+        expect(await bag.delete(controller), isFalse);
+      });
+    });
+
+    group('DisposeBag.remove', () {
+      test('DisposeBag.remove', () async {
+        final stream =
+            Stream.periodic(const Duration(milliseconds: 100)).take(10);
+        final controller = StreamController<int>()..stream.listen(null);
+        final bag = DisposeBag([controller]);
+
+        expect(await bag.remove(controller), isTrue);
+        expect(controller.isClosed, isTrue);
+
+        var count = 0;
+        StreamSubscription subscription;
+        subscription = stream.asyncMap((_) async {
+          ++count;
+          if (count == 5) {
+            expect(await bag.remove(subscription), isTrue);
+          }
+        }).listen(
+          expectAsync1(
+            (_) {},
+            count: 4,
+          ),
+        );
+        await bag.add(subscription);
+      });
+
+      test('DisposeBag.remove.isDisposed', () async {
+        final subscription = Stream.empty().listen(null);
+        final controller = StreamController<int>()..stream.listen(null);
+
+        final bag = DisposeBag([subscription, controller]);
+        await bag.dispose();
+
+        expect(bag.length, 0);
+        expect(controller.isClosed, isTrue);
+
+        expect(await bag.remove(subscription), isFalse);
+        expect(await bag.remove(controller), isFalse);
+      });
+    });
+
+    group('DisposeBag.clear', () {
+      test('DisposeBag.clear', () async {
+        final completer = Completer<void>();
+
+        final stream1 =
+            Stream.periodic(const Duration(milliseconds: 100)).take(10);
+        final controller1 = StreamController<int>()..stream.listen(null);
+        final bag = DisposeBag([controller1]);
+
+        var count1 = 0;
+        await bag.add(
+          stream1.asyncMap((_) async {
+            ++count1;
+            if (count1 == 5) {
+              await bag.clear();
+              expect(controller1.isClosed, isTrue);
+              completer.complete();
+            }
+          }).listen(
+            expectAsync1(
+              (_) {},
+              count: 4,
+            ),
+          ),
+        );
+
+        await completer.future;
+        // Reuse bag
+
+        final stream2 =
+            Stream.periodic(const Duration(milliseconds: 100)).take(10);
+        final controller2 = StreamController<int>()..stream.listen(null);
+        await bag.add(controller2);
+
+        var count2 = 0;
+        await bag.add(
+          stream2.asyncMap((_) async {
+            ++count2;
+            if (count2 == 5) {
+              await bag.clear();
+              expect(controller2.isClosed, isTrue);
+            }
+          }).listen(
+            expectAsync1(
+              (_) {},
+              count: 4,
+            ),
+          ),
         );
       });
     });

@@ -1,7 +1,10 @@
-A library for Dart developers.
+#disposebag
 
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+### Author: [Petrus Nguyễn Thái Học](https://github.com/hoc081098)
+
+![Pub](https://img.shields.io/pub/v/disposebag)
+
+A package to help disposing Streams and closing Sinks
 
 ## Usage
 
