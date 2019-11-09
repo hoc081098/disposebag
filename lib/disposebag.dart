@@ -1,8 +1,7 @@
-
 /// ## Helper disposing Streams and closing Sinks
 /// ![Pub](https://img.shields.io/pub/v/disposebag)
 /// ### Author: [Petrus Nguyễn Thái Học](https://github.com/hoc081098)
-/// 
+///
 /// ### Usage example
 ///
 /// ```dart

@@ -1,6 +1,6 @@
 name: disposebag
-description: A package to help disposing Streams and closing Sinks.
-version: 1.0.0
+description: A package to help disposing Streams and closing Sinks easily.
+version: 1.0.0+1
 homepage: https://github.com/hoc081098/disposebag.git
 author: Petrus Nguyễn Thái Học <hoc081098@gmail.com>
 
