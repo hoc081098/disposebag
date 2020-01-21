@@ -1,10 +1,16 @@
 language: dart
-os:
-  - linux
-sudo: false
+dart:
+  - stable
+  - dev
 script:
+  - dartanalyzer --fatal-infos --fatal-warnings ./
+  - dartfmt -n ./lib --set-exit-if-changed
   - pub get
-  - pub run test test/disposebag_test.dart
+  - pub global activate coverage
+  - pub run test test/disposebag_test.dart --coverage=coverage
+  - pub global run coverage:format_coverage --in coverage/test/disposebag_test.dart.vm.json --out lcov.info --lcov
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 cache:
   directories:
     - $HOME/.pub-cache
