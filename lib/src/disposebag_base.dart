@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:meta/meta.dart';
 
-/// Class that help closing sinks and canceling stream subscriptions
+/// Class that helps closing sinks and canceling stream subscriptions
 class DisposeBag {
   final _resources = <dynamic>{}; // <StreamSubscription | Sink>{}
   bool _isDisposed = false;
