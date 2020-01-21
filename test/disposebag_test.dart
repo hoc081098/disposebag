@@ -3,12 +3,16 @@ import 'dart:async';
 import 'package:disposebag/disposebag.dart';
 import 'package:test/test.dart';
 
+Stream<int> _getPeriodicStream() =>
+    Stream.periodic(const Duration(milliseconds: 100), (i) => i).take(10);
+
+const _maxCount = 5;
+
 void main() {
   group('DisposeBag', () {
     group('DisposeBag.add', () {
       test('DisposeBag.add.subscription', () async {
-        final stream =
-            Stream.periodic(const Duration(milliseconds: 100)).take(10);
+        final stream = _getPeriodicStream();
 
         final bag = DisposeBag();
 
@@ -17,22 +21,21 @@ void main() {
           stream.asyncMap(
             (_) async {
               ++count;
-              if (count == 5) {
+              if (count == _maxCount) {
                 await bag.dispose();
               }
             },
           ).listen(
             expectAsync1(
               (_) {},
-              count: 4,
+              count: _maxCount - 1,
             ),
           ),
         );
       });
 
       test('DisposeBag.add.subscription.isDisposed', () async {
-        final stream =
-            Stream.periodic(const Duration(milliseconds: 100)).take(10);
+        final stream = _getPeriodicStream();
 
         final bag = DisposeBag();
         await bag.dispose();
@@ -42,14 +45,14 @@ void main() {
         subscription = stream.asyncMap(
           (_) async {
             ++count;
-            if (count == 5) {
+            if (count == _maxCount) {
               await bag.add(subscription);
             }
           },
         ).listen(
           expectAsync1(
             (_) {},
-            count: 4,
+            count: _maxCount - 1,
           ),
         );
       });
@@ -77,8 +80,7 @@ void main() {
 
     group('DisposeBag.addAll', () {
       test('DisposeBag.addAll.isDisposed', () async {
-        final stream =
-            Stream.periodic(const Duration(milliseconds: 100)).take(10);
+        final stream = _getPeriodicStream();
         final controller = StreamController<int>()..stream.listen(null);
 
         final bag = DisposeBag();
@@ -89,7 +91,7 @@ void main() {
         subscription = stream.asyncMap(
           (_) async {
             ++count;
-            if (count == 5) {
+            if (count == _maxCount) {
               await bag.addAll(
                 [
                   subscription,
@@ -102,14 +104,13 @@ void main() {
         ).listen(
           expectAsync1(
             (_) {},
-            count: 4,
+            count: _maxCount - 1,
           ),
         );
       });
 
       test('DisposeBag.addAll', () async {
-        final stream =
-            Stream.periodic(const Duration(milliseconds: 100)).take(10);
+        final stream = _getPeriodicStream();
         final controller = StreamController<int>()..stream.listen(null);
 
         final bag = DisposeBag();
@@ -120,7 +121,7 @@ void main() {
             stream.asyncMap(
               (_) async {
                 ++count;
-                if (count == 5) {
+                if (count == _maxCount) {
                   await bag.dispose();
                   expect(controller.isClosed, isTrue);
                 }
@@ -128,7 +129,7 @@ void main() {
             ).listen(
               expectAsync1(
                 (_) {},
-                count: 4,
+                count: _maxCount - 1,
               ),
             ),
             controller,
@@ -136,6 +137,7 @@ void main() {
         );
       });
     });
+
     group('DisposeBag.delete', () {
       test('DisposeBag.delete', () async {
         final subscription = Stream.empty().listen(null);
@@ -166,8 +168,7 @@ void main() {
 
     group('DisposeBag.remove', () {
       test('DisposeBag.remove', () async {
-        final stream =
-            Stream.periodic(const Duration(milliseconds: 100)).take(10);
+        final stream = _getPeriodicStream();
         final controller = StreamController<int>()..stream.listen(null);
         final bag = DisposeBag([controller]);
 
@@ -178,13 +179,13 @@ void main() {
         StreamSubscription subscription;
         subscription = stream.asyncMap((_) async {
           ++count;
-          if (count == 5) {
+          if (count == _maxCount) {
             expect(await bag.remove(subscription), isTrue);
           }
         }).listen(
           expectAsync1(
             (_) {},
-            count: 4,
+            count: _maxCount - 1,
           ),
         );
         await bag.add(subscription);
@@ -209,8 +210,7 @@ void main() {
       test('DisposeBag.clear', () async {
         final completer = Completer<void>();
 
-        final stream1 =
-            Stream.periodic(const Duration(milliseconds: 100)).take(10);
+        final stream1 = _getPeriodicStream();
         final controller1 = StreamController<int>()..stream.listen(null);
         final bag = DisposeBag([controller1]);
 
@@ -218,7 +218,7 @@ void main() {
         await bag.add(
           stream1.asyncMap((_) async {
             ++count1;
-            if (count1 == 5) {
+            if (count1 == _maxCount) {
               await bag.clear();
               expect(controller1.isClosed, isTrue);
               completer.complete();
@@ -226,7 +226,7 @@ void main() {
           }).listen(
             expectAsync1(
               (_) {},
-              count: 4,
+              count: _maxCount - 1,
             ),
           ),
         );
@@ -234,8 +234,7 @@ void main() {
         await completer.future;
         // Reuse bag
 
-        final stream2 =
-            Stream.periodic(const Duration(milliseconds: 100)).take(10);
+        final stream2 = _getPeriodicStream();
         final controller2 = StreamController<int>()..stream.listen(null);
         await bag.add(controller2);
 
@@ -243,14 +242,14 @@ void main() {
         await bag.add(
           stream2.asyncMap((_) async {
             ++count2;
-            if (count2 == 5) {
+            if (count2 == _maxCount) {
               await bag.clear();
               expect(controller2.isClosed, isTrue);
             }
           }).listen(
             expectAsync1(
               (_) {},
-              count: 4,
+              count: _maxCount - 1,
             ),
           ),
         );

@@ -2,11 +2,13 @@ import 'dart:async';
 
 import 'package:meta/meta.dart';
 
+/// Class that help closing sinks and canceling stream subscriptions
 class DisposeBag {
   final _resources = <dynamic>{}; // <StreamSubscription | Sink>{}
   bool _isDisposed = false;
   bool _isDisposing = false;
 
+  /// Construct a [DisposeBag] with [disposables] iterable
   DisposeBag([Iterable<dynamic> disposables = const []]) {
     _addAll(disposables);
   }
@@ -17,7 +19,7 @@ class DisposeBag {
     }
   }
 
-  /// Add one item to resouces, only add if item is [StreamSubscription] or item is [Sink]
+  /// Add one item to resources, only add if item is [StreamSubscription] or item is [Sink]
   bool _addOne(dynamic item) {
     if (item == null) {
       return false;

@@ -1,10 +1,10 @@
 import 'package:disposebag/disposebag.dart';
 import 'dart:async';
 
-main() async {
+void main() async {
   final controller1 = StreamController<int>();
   final controller2 = StreamController<int>();
-  final periodict = Stream.periodic(
+  final periodic = Stream.periodic(
     const Duration(milliseconds: 100),
     (int i) => i,
   );
@@ -12,7 +12,7 @@ main() async {
   final bag = DisposeBag([
     controller1,
     controller2,
-    periodict.listen(controller1.add),
+    periodic.listen(controller1.add),
     controller1.stream.listen((i) => print('Periodic $i')),
     controller2.stream.listen((i) => print('Controller2 $i')),
   ]);
