@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e4129a3a-c433-4c03-b9d5-a7ab9f862eaa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/disposebag_example.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/disposebag_example.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/disposebag_base.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/disposebag_base.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +33,7 @@
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
-  <component name="RunManager" selected="Dart Test.tests in disposebag_test.dart">
+  <component name="RunManager" selected="Dart Test.DisposeBag in disposebag_test.dart">
     <configuration name="disposebag_example.dart" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application" temporary="true" nameIsGenerated="true">
       <option name="filePath" value="$PROJECT_DIR$/example/disposebag_example.dart" />
       <option name="workingDirectory" value="$PROJECT_DIR$" />
@@ -61,11 +64,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Dart Test.DisposeBag in disposebag_test.dart" />
+        <item itemvalue="Dart Command Line App.disposebag_example.dart" />
         <item itemvalue="Dart Test.tests in disposebag_test.dart" />
         <item itemvalue="Dart Test.DisposeBag.clear in disposebag_test.dart" />
         <item itemvalue="Dart Test.description in disposebag_test.dart" />
-        <item itemvalue="Dart Command Line App.disposebag_example.dart" />
-        <item itemvalue="Dart Test.DisposeBag in disposebag_test.dart" />
       </list>
     </recent_temporary>
   </component>
@@ -134,7 +137,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579702236445</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add codecov to README.md">
+      <created>1579702480828</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1579702480828</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -144,33 +154,38 @@
     <MESSAGE value="typo" />
     <MESSAGE value="Update .travis.yml" />
     <MESSAGE value="up" />
-    <option name="LAST_COMMIT_MESSAGE" value="up" />
+    <MESSAGE value="Add codecov to README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add codecov to README.md" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="123" y="0" width="1121" height="728" key="CommitChangelistDialog2" timestamp="1579702235281">
+    <state x="123" y="0" width="1121" height="728" key="CommitChangelistDialog2" timestamp="1579702479801">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="123" y="0" width="1121" height="728" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1579702235281" />
-    <state width="1323" height="248" key="GridCell.Tab.0.bottom" timestamp="1579702229556">
+    <state x="123" y="0" width="1121" height="728" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1579702479801" />
+    <state width="1323" height="328" key="GridCell.Tab.0.bottom" timestamp="1579705015869">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="248" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1579702229556" />
-    <state width="1323" height="248" key="GridCell.Tab.0.center" timestamp="1579702229556">
+    <state width="1323" height="328" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1579705015869" />
+    <state width="1323" height="328" key="GridCell.Tab.0.center" timestamp="1579705015868">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="248" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1579702229556" />
-    <state width="1323" height="248" key="GridCell.Tab.0.left" timestamp="1579702229556">
+    <state width="1323" height="328" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1579705015868" />
+    <state width="1323" height="328" key="GridCell.Tab.0.left" timestamp="1579705015868">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="248" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1579702229556" />
-    <state width="1323" height="248" key="GridCell.Tab.0.right" timestamp="1579702229556">
+    <state width="1323" height="328" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1579705015868" />
+    <state width="1323" height="328" key="GridCell.Tab.0.right" timestamp="1579705015868">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="248" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1579702229556" />
-    <state x="275" y="101" key="Vcs.Push.Dialog.v2" timestamp="1579702238361">
+    <state width="1323" height="328" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1579705015868" />
+    <state x="186" y="10" key="SettingsEditor" timestamp="1579704484695">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="101" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1579702238361" />
+    <state x="186" y="10" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1579704484695" />
+    <state x="275" y="101" key="Vcs.Push.Dialog.v2" timestamp="1579702481398">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="101" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1579702481398" />
     <state x="391" y="193" key="com.intellij.ide.util.TipDialog" timestamp="1579701789932">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

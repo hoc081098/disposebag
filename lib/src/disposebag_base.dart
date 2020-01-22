@@ -1,15 +1,42 @@
 import 'dart:async';
 
 import 'package:meta/meta.dart';
+import 'package:collection/collection.dart';
+
+typedef Logger = void Function(Set<dynamic> resources);
+
+void _defaultLogger(Set<dynamic> resources) {
+  print(' ↓ Disposed: ');
+  print(resources.mapIndexed((i, e) => '   $i → $e').join('\n'));
+}
+
+extension _MapIndexedIterableExtension<T> on Iterable<T> {
+  Iterable<R> mapIndexed<R>(R Function(int, T) mapper) sync* {
+    var index = 0;
+    for (final item in this) {
+      yield mapper(index++, item);
+    }
+  }
+}
 
 /// Class that helps closing sinks and canceling stream subscriptions
 class DisposeBag {
+  /// Enabled logger
+  final bool loggerEnabled;
+
+  /// Logger that logs disposed resources
+  final Logger logger;
   final _resources = <dynamic>{}; // <StreamSubscription | Sink>{}
   bool _isDisposed = false;
   bool _isDisposing = false;
 
   /// Construct a [DisposeBag] with [disposables] iterable
-  DisposeBag([Iterable<dynamic> disposables = const []]) {
+  DisposeBag([
+    Iterable<dynamic> disposables = const [],
+    this.loggerEnabled = true,
+    this.logger = _defaultLogger,
+  ])  : assert(loggerEnabled != null),
+        assert(logger != null) {
     _addAll(disposables);
   }
 
@@ -59,6 +86,9 @@ class DisposeBag {
     final futures =
         Set.of(_resources).map(_disposeOne).where((future) => future != null);
     await Future.wait(futures);
+    if (loggerEnabled) {
+      logger(UnmodifiableSetView(_resources));
+    }
 
     /// End dispose
     _isDisposing = false;
@@ -73,7 +103,7 @@ class DisposeBag {
 
   /// Get all disposable
   @visibleForTesting
-  Set<dynamic> get disposables => Set.of(_resources);
+  Set<dynamic> get disposables => UnmodifiableSetView(_resources);
 
   /// Adds a disposable to this container or disposes it if the container has been disposed.
   Future<bool> add(dynamic disposable) async {
