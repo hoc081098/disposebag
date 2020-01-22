@@ -1,3 +1,7 @@
+## 1.1.1 - Jan 22, 2020
+
+- Fix `collection` version
+
 ## 1.1.0 - Jan 22, 2020
 
 - Add `logger` that logs disposed resources

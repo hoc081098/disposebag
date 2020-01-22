@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e4129a3a-c433-4c03-b9d5-a7ab9f862eaa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -150,7 +149,21 @@
       <option name="project" value="LOCAL" />
       <updated>1579705043570</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Publish v1.1.0">
+      <created>1579705513244</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1579705513244</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Publish v1.1.0">
+      <created>1579705540611</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1579705540611</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -162,41 +175,42 @@
     <MESSAGE value="up" />
     <MESSAGE value="Add codecov to README.md" />
     <MESSAGE value="Add logger and update disposebag_example.dart" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add logger and update disposebag_example.dart" />
+    <MESSAGE value="Publish v1.1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Publish v1.1.0" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="123" y="0" width="1121" height="728" key="CommitChangelistDialog2" timestamp="1579705512544">
+    <state x="123" y="0" width="1121" height="728" key="CommitChangelistDialog2" timestamp="1579705539819">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="123" y="0" width="1121" height="728" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1579705512544" />
+    <state x="123" y="0" width="1121" height="728" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1579705539819" />
     <state x="92" y="92" width="1182" height="544" key="DiffContextDialog" timestamp="1579705537342">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="92" y="92" width="1182" height="544" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1579705537342" />
-    <state width="1323" height="328" key="GridCell.Tab.0.bottom" timestamp="1579705239029">
+    <state width="1323" height="236" key="GridCell.Tab.0.bottom" timestamp="1579705832988">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="328" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1579705239029" />
-    <state width="1323" height="328" key="GridCell.Tab.0.center" timestamp="1579705239029">
+    <state width="1323" height="236" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1579705832988" />
+    <state width="1323" height="236" key="GridCell.Tab.0.center" timestamp="1579705832987">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="328" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1579705239029" />
-    <state width="1323" height="328" key="GridCell.Tab.0.left" timestamp="1579705239028">
+    <state width="1323" height="236" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1579705832987" />
+    <state width="1323" height="236" key="GridCell.Tab.0.left" timestamp="1579705832987">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="328" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1579705239028" />
-    <state width="1323" height="328" key="GridCell.Tab.0.right" timestamp="1579705239029">
+    <state width="1323" height="236" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1579705832987" />
+    <state width="1323" height="236" key="GridCell.Tab.0.right" timestamp="1579705832987">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="328" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1579705239029" />
+    <state width="1323" height="236" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1579705832987" />
     <state x="186" y="10" key="SettingsEditor" timestamp="1579704484695">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="186" y="10" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1579704484695" />
-    <state x="275" y="101" key="Vcs.Push.Dialog.v2" timestamp="1579705513900">
+    <state x="275" y="101" key="Vcs.Push.Dialog.v2" timestamp="1579705541371">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="101" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1579705513900" />
+    <state x="275" y="101" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1579705541371" />
     <state x="391" y="193" key="com.intellij.ide.util.TipDialog" timestamp="1579701789932">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
