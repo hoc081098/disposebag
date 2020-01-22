@@ -1,3 +1,9 @@
+## 1.1.0 - Jan 22, 2020
+
+- Add `logger` that logs disposed resources
+- Minors update
+- Upgrade min sdk to `2.6.0`
+
 ## 1.0.0+1 - Nov 9, 2019
 
 - Minors update
