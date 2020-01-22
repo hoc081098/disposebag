@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e4129a3a-c433-4c03-b9d5-a7ab9f862eaa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/disposebag_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/disposebag_test.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +127,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579609691044</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="up">
+      <created>1579702236445</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1579702236445</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -141,10 +147,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="up" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="123" y="0" width="1121" height="728" key="CommitChangelistDialog2" timestamp="1579702214412">
+    <state x="123" y="0" width="1121" height="728" key="CommitChangelistDialog2" timestamp="1579702235281">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="123" y="0" width="1121" height="728" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1579702214412" />
+    <state x="123" y="0" width="1121" height="728" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1579702235281" />
     <state width="1323" height="248" key="GridCell.Tab.0.bottom" timestamp="1579702229556">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -161,10 +167,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="248" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1579702229556" />
-    <state x="275" y="101" key="Vcs.Push.Dialog.v2" timestamp="1579609694942">
+    <state x="275" y="101" key="Vcs.Push.Dialog.v2" timestamp="1579702238361">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="101" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1579609694942" />
+    <state x="275" y="101" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1579702238361" />
     <state x="391" y="193" key="com.intellij.ide.util.TipDialog" timestamp="1579701789932">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
