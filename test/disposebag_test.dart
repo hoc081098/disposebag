@@ -234,6 +234,7 @@ void main() {
         await completer.future;
         // Reuse bag
 
+        final completer2 = Completer<void>();
         final stream2 = _getPeriodicStream();
         final controller2 = StreamController<int>()..stream.listen(null);
         await bag.add(controller2);
@@ -244,7 +245,7 @@ void main() {
             ++count2;
             if (count2 == _maxCount) {
               await bag.clear();
-              expect(controller2.isClosed, isTrue);
+              completer2.complete();
             }
           }).listen(
             expectAsync1(
@@ -253,6 +254,9 @@ void main() {
             ),
           ),
         );
+
+        await completer2.future;
+        expect(controller2.isClosed, isTrue);
       });
     });
   });

@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e4129a3a-c433-4c03-b9d5-a7ab9f862eaa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/disposebag_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/disposebag_test.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +43,18 @@
       <option name="testName" value="DisposeBag" />
       <method v="2" />
     </configuration>
+    <configuration name="DisposeBag.clear in disposebag_test.dart" type="DartTestRunConfigurationType" factoryName="Dart Test" temporary="true" nameIsGenerated="true">
+      <option name="filePath" value="$PROJECT_DIR$/test/disposebag_test.dart" />
+      <option name="scope" value="GROUP_OR_TEST_BY_NAME" />
+      <option name="testName" value="DisposeBag.clear" />
+      <method v="2" />
+    </configuration>
+    <configuration name="description in disposebag_test.dart" type="DartTestRunConfigurationType" factoryName="Dart Test" temporary="true" nameIsGenerated="true">
+      <option name="filePath" value="$PROJECT_DIR$/test/disposebag_test.dart" />
+      <option name="scope" value="GROUP_OR_TEST_BY_NAME" />
+      <option name="testName" value="description" />
+      <method v="2" />
+    </configuration>
     <configuration name="tests in disposebag_test.dart" type="DartTestRunConfigurationType" factoryName="Dart Test" temporary="true" nameIsGenerated="true">
       <option name="filePath" value="$PROJECT_DIR$/test/disposebag_test.dart" />
       <option name="testName" value="disposebag_test.dart" />
@@ -51,6 +63,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Dart Test.tests in disposebag_test.dart" />
+        <item itemvalue="Dart Test.DisposeBag.clear in disposebag_test.dart" />
+        <item itemvalue="Dart Test.description in disposebag_test.dart" />
         <item itemvalue="Dart Command Line App.disposebag_example.dart" />
         <item itemvalue="Dart Test.DisposeBag in disposebag_test.dart" />
       </list>
@@ -100,7 +114,21 @@
       <option name="project" value="LOCAL" />
       <updated>1579609143522</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="up">
+      <created>1579609477941</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1579609477941</updated>
+    </task>
+    <task id="LOCAL-00005" summary="up">
+      <created>1579609691044</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1579609691044</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -109,36 +137,37 @@
     <MESSAGE value="Update" />
     <MESSAGE value="typo" />
     <MESSAGE value="Update .travis.yml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update .travis.yml" />
+    <MESSAGE value="up" />
+    <option name="LAST_COMMIT_MESSAGE" value="up" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="350" y="0" key="CommitChangelistDialog2" timestamp="1579609477063">
+    <state x="123" y="0" width="1121" height="728" key="CommitChangelistDialog2" timestamp="1579702214412">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="350" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1579609477063" />
-    <state width="1323" height="192" key="GridCell.Tab.0.bottom" timestamp="1579608651503">
+    <state x="123" y="0" width="1121" height="728" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1579702214412" />
+    <state width="1323" height="248" key="GridCell.Tab.0.bottom" timestamp="1579702229556">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="192" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1579608651503" />
-    <state width="1323" height="192" key="GridCell.Tab.0.center" timestamp="1579608651503">
+    <state width="1323" height="248" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1579702229556" />
+    <state width="1323" height="248" key="GridCell.Tab.0.center" timestamp="1579702229556">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="192" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1579608651503" />
-    <state width="1323" height="192" key="GridCell.Tab.0.left" timestamp="1579608651503">
+    <state width="1323" height="248" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1579702229556" />
+    <state width="1323" height="248" key="GridCell.Tab.0.left" timestamp="1579702229556">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="192" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1579608651503" />
-    <state width="1323" height="192" key="GridCell.Tab.0.right" timestamp="1579608651503">
+    <state width="1323" height="248" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1579702229556" />
+    <state width="1323" height="248" key="GridCell.Tab.0.right" timestamp="1579702229556">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="192" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1579608651503" />
-    <state x="275" y="101" key="Vcs.Push.Dialog.v2" timestamp="1579609479496">
+    <state width="1323" height="248" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1579702229556" />
+    <state x="275" y="101" key="Vcs.Push.Dialog.v2" timestamp="1579609694942">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="101" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1579609479496" />
-    <state x="391" y="193" key="com.intellij.ide.util.TipDialog" timestamp="1579607360001">
+    <state x="275" y="101" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1579609694942" />
+    <state x="391" y="193" key="com.intellij.ide.util.TipDialog" timestamp="1579701789932">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="391" y="193" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1579607360001" />
+    <state x="391" y="193" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1579701789932" />
   </component>
 </project>
