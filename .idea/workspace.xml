@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e4129a3a-c433-4c03-b9d5-a7ab9f862eaa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/disposebag_base.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/disposebag_base.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +31,7 @@
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
-  <component name="RunManager" selected="Dart Test.tests in disposebag_test.dart">
+  <component name="RunManager" selected="Dart Command Line App.disposebag_example.dart">
     <configuration name="disposebag_example.dart" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application" temporary="true" nameIsGenerated="true">
       <option name="filePath" value="$PROJECT_DIR$/example/disposebag_example.dart" />
       <option name="workingDirectory" value="$PROJECT_DIR$" />
@@ -62,8 +62,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Dart Test.tests in disposebag_test.dart" />
         <item itemvalue="Dart Command Line App.disposebag_example.dart" />
+        <item itemvalue="Dart Test.tests in disposebag_test.dart" />
         <item itemvalue="Dart Test.DisposeBag in disposebag_test.dart" />
         <item itemvalue="Dart Test.DisposeBag.clear in disposebag_test.dart" />
         <item itemvalue="Dart Test.description in disposebag_test.dart" />
@@ -187,22 +187,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="92" y="92" width="1182" height="544" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1579705537342" />
-    <state width="1323" height="236" key="GridCell.Tab.0.bottom" timestamp="1579705832988">
+    <state width="1323" height="317" key="GridCell.Tab.0.bottom" timestamp="1579795828033">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="236" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1579705832988" />
-    <state width="1323" height="236" key="GridCell.Tab.0.center" timestamp="1579705832987">
+    <state width="1323" height="317" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1579795828033" />
+    <state width="1323" height="317" key="GridCell.Tab.0.center" timestamp="1579795828033">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="236" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1579705832987" />
-    <state width="1323" height="236" key="GridCell.Tab.0.left" timestamp="1579705832987">
+    <state width="1323" height="317" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1579795828033" />
+    <state width="1323" height="317" key="GridCell.Tab.0.left" timestamp="1579795828033">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="236" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1579705832987" />
-    <state width="1323" height="236" key="GridCell.Tab.0.right" timestamp="1579705832987">
+    <state width="1323" height="317" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1579795828033" />
+    <state width="1323" height="317" key="GridCell.Tab.0.right" timestamp="1579795828033">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="236" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1579705832987" />
+    <state width="1323" height="317" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1579795828033" />
     <state x="186" y="10" key="SettingsEditor" timestamp="1579704484695">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -211,9 +211,13 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="275" y="101" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1579705541371" />
-    <state x="391" y="193" key="com.intellij.ide.util.TipDialog" timestamp="1579701789932">
+    <state x="391" y="193" key="com.intellij.ide.util.TipDialog" timestamp="1579794535842">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="391" y="193" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1579701789932" />
+    <state x="391" y="193" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1579794535842" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1579794992568">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1579794992568" />
   </component>
 </project>

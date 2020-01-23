@@ -10,6 +10,13 @@ void _defaultLogger(Set<dynamic> resources) {
   print(resources.mapIndexed((i, e) => '   $i → $e').join('\n'));
 }
 
+class _Pair<T, R> {
+  final T first;
+  final R second;
+
+  const _Pair(this.first, this.second);
+}
+
 extension _MapIndexedIterableExtension<T> on Iterable<T> {
   Iterable<R> mapIndexed<R>(R Function(int, T) mapper) sync* {
     var index = 0;
@@ -35,8 +42,7 @@ class DisposeBag {
     Iterable<dynamic> disposables = const [],
     this.loggerEnabled = true,
     this.logger = _defaultLogger,
-  ])  : assert(loggerEnabled != null),
-        assert(logger != null) {
+  ]) : assert(loggerEnabled != null) {
     _addAll(disposables);
   }
 
@@ -83,11 +89,17 @@ class DisposeBag {
     _isDisposing = true;
 
     /// Await dispose
-    final futures =
-        Set.of(_resources).map(_disposeOne).where((future) => future != null);
+    final pairs = _resources
+        .map((r) => _Pair(_disposeOne(r), r))
+        .where((pair) => pair.first != null)
+        .toList(growable: false);
+
+    final futures = pairs.map((pair) => pair.first);
     await Future.wait(futures);
+
     if (loggerEnabled) {
-      logger(UnmodifiableSetView(_resources));
+      final resources = pairs.map((pair) => pair.second).toSet();
+      logger?.call(UnmodifiableSetView(resources));
     }
 
     /// End dispose
