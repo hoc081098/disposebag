@@ -1,3 +1,7 @@
+## 1.1.1+1 - Jan 26, 2020
+
+- Update `logger`
+
 ## 1.1.1 - Jan 22, 2020
 
 - Fix `collection` version
