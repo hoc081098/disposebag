@@ -1,12 +1,15 @@
 import 'dart:async';
 
 import 'package:disposebag/disposebag.dart';
+import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 Stream<int> _getPeriodicStream() =>
     Stream.periodic(const Duration(milliseconds: 100), (i) => i).take(10);
 
 const _maxCount = 5;
+
+class MockDisposeBag extends Mock implements DisposeBag {}
 
 void main() {
   group('DisposeBag', () {
@@ -258,6 +261,24 @@ void main() {
         await completer2.future;
         expect(controller2.isClosed, isTrue);
       });
+    });
+  });
+
+  group('Extensions', () {
+    DisposeBag bag;
+
+    setUp(() => bag = MockDisposeBag());
+
+    test('StreamSubscription.disposedBy', () {
+      final subscription = Stream.value(1).listen(null);
+      subscription.disposedBy(bag);
+      verify(bag.add(subscription)).called(1);
+    });
+
+    test('StreamSubscription.disposedBy', () {
+      final controller = StreamController<void>();
+      controller.disposedBy(bag);
+      verify(bag.add(controller)).called(1);
     });
   });
 }

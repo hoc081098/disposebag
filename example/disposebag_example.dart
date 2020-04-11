@@ -1,5 +1,6 @@
-import 'package:disposebag/disposebag.dart';
 import 'dart:async';
+
+import 'package:disposebag/disposebag.dart';
 
 List<dynamic> get _disposables {
   final controllers = <StreamController>[
