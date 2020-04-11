@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4129a3a-c433-4c03-b9d5-a7ab9f862eaa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/src/extensions.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/disposebag_example.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/disposebag_example.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/disposebag.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/disposebag.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/disposebag_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/disposebag_test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/extensions.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/extensions.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +191,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580026206373</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="add(extensions): disposedBy on StreamSubscription and Sink">
+      <created>1586589919985</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1586589919985</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -223,13 +226,14 @@
     <MESSAGE value="Publish v1.1.0" />
     <MESSAGE value="Update log" />
     <MESSAGE value="Publish 1.1.1+1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Publish 1.1.1+1" />
+    <MESSAGE value="add(extensions): disposedBy on StreamSubscription and Sink" />
+    <option name="LAST_COMMIT_MESSAGE" value="add(extensions): disposedBy on StreamSubscription and Sink" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="123" y="0" width="1121" height="728" key="CommitChangelistDialog2" timestamp="1580026205341">
+    <state x="123" y="0" width="1121" height="728" key="CommitChangelistDialog2" timestamp="1586589918522">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="123" y="0" width="1121" height="728" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1580026205341" />
+    <state x="123" y="0" width="1121" height="728" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1586589918522" />
     <state x="92" y="92" width="1182" height="544" key="DiffContextDialog" timestamp="1579705537342">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -254,10 +258,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="186" y="10" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1579704484695" />
-    <state x="275" y="101" key="Vcs.Push.Dialog.v2" timestamp="1580026207199">
+    <state x="275" y="101" key="Vcs.Push.Dialog.v2" timestamp="1586589921400">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="101" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1580026207199" />
+    <state x="275" y="101" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1586589921400" />
     <state x="391" y="193" key="com.intellij.ide.util.TipDialog" timestamp="1586588536164">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

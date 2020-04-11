@@ -1,3 +1,8 @@
+## 1.1.2 - Apr 11, 2020
+
+- Add `disposedBy` extension method for `StreamSubscription`
+- Add `disposedBy` extension method for `Sink`
+
 ## 1.1.1+1 - Jan 26, 2020
 
 - Update `logger`
