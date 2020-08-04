@@ -1,13 +1,12 @@
 language: dart
 dart:
-  - stable
   - dev
 script:
-  - dartanalyzer --fatal-infos --fatal-warnings ./
+  - dartanalyzer --enable-experiment=non-nullable --fatal-infos --fatal-warnings ./
   - dartfmt -n ./lib --set-exit-if-changed
   - pub get
   - pub global activate coverage
-  - pub run test test/disposebag_test.dart --coverage=coverage
+  - pub run --enable-experiment=non-nullable test test/disposebag_test.dart --coverage=coverage
   - pub global run coverage:format_coverage --in coverage/test/disposebag_test.dart.vm.json --out lcov.info --lcov
 after_success:
   - bash <(curl -s https://codecov.io/bash)

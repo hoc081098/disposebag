@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:disposebag/disposebag.dart';
-import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 Stream<int> _getPeriodicStream() =>
@@ -9,7 +8,8 @@ Stream<int> _getPeriodicStream() =>
 
 const _maxCount = 5;
 
-class MockDisposeBag extends Mock implements DisposeBag {}
+//import 'package:mockito/mockito.dart';
+//class MockDisposeBag extends Mock implements DisposeBag {}
 
 void main() {
   group('DisposeBag', () {
@@ -44,7 +44,7 @@ void main() {
         await bag.dispose();
 
         var count = 0;
-        StreamSubscription subscription;
+        late StreamSubscription subscription;
         subscription = stream.asyncMap(
           (_) async {
             ++count;
@@ -90,7 +90,7 @@ void main() {
         await bag.dispose();
 
         var count = 0;
-        StreamSubscription subscription;
+        late StreamSubscription subscription;
         subscription = stream.asyncMap(
           (_) async {
             ++count;
@@ -179,7 +179,7 @@ void main() {
         expect(controller.isClosed, isTrue);
 
         var count = 0;
-        StreamSubscription subscription;
+        late StreamSubscription subscription;
         subscription = stream.asyncMap((_) async {
           ++count;
           if (count == _maxCount) {
@@ -264,21 +264,21 @@ void main() {
     });
   });
 
-  group('Extensions', () {
-    DisposeBag bag;
-
-    setUp(() => bag = MockDisposeBag());
-
-    test('StreamSubscription.disposedBy', () {
-      final subscription = Stream.value(1).listen(null);
-      subscription.disposedBy(bag);
-      verify(bag.add(subscription)).called(1);
-    });
-
-    test('StreamSubscription.disposedBy', () {
-      final controller = StreamController<void>();
-      controller.disposedBy(bag);
-      verify(bag.add(controller)).called(1);
-    });
-  });
+//  group('Extensions', () {
+//    DisposeBag bag;
+//
+//    setUp(() => bag = MockDisposeBag());
+//
+//    test('StreamSubscription.disposedBy', () {
+//      final subscription = Stream.value(1).listen(null);
+//      subscription.disposedBy(bag);
+//      verify(bag.add(subscription)).called(1);
+//    });
+//
+//    test('StreamSubscription.disposedBy', () {
+//      final controller = StreamController<void>();
+//      controller.disposedBy(bag);
+//      verify(bag.add(controller)).called(1);
+//    });
+//  });
 }

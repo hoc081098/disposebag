@@ -30,8 +30,8 @@ typedef Logger = void Function(
 void _defaultLogger(
   BagResult result,
   Set<dynamic> resources, [
-  Object error,
-  StackTrace stackTrace,
+  Object? error,
+  StackTrace? stackTrace,
 ]) {
   switch (result) {
     case BagResult.disposedSuccess:
@@ -42,13 +42,17 @@ void _defaultLogger(
       break;
     case BagResult.disposedFailure:
       print(' ↓ Disposed unsuccessfully: ');
-      print('    → Error: $error');
-      print('    → StackTrace: $stackTrace');
+      print('    → Error: ${error!}');
+      if (stackTrace != null) {
+        print('    → StackTrace: $stackTrace');
+      }
       break;
     case BagResult.clearedFailure:
       print(' ↓ Cleared unsuccessfully: ');
-      print('    → Error: $error');
-      print('    → StackTrace: $stackTrace');
+      print('    → Error: ${error!}');
+      if (stackTrace != null) {
+        print('    → StackTrace: $stackTrace');
+      }
       break;
   }
 
@@ -71,12 +75,22 @@ extension _MapIndexedIterableExtension<T> on Iterable<T> {
   }
 }
 
+extension _WhereNotNullIterableExtension<T> on Iterable<T?> {
+  Iterable<T> whereNotNull() sync* {
+    for (final item in this) {
+      if (item != null) {
+        yield item;
+      }
+    }
+  }
+}
+
 enum _Operation { clear, dispose }
 
 extension on _Operation {
   BagResult toResult({
-    Object error,
-    StackTrace stackTrace,
+    Object? error,
+    StackTrace? stackTrace,
   }) {
     if (error == null && stackTrace == null) {
       switch (this) {
@@ -93,7 +107,6 @@ extension on _Operation {
           return BagResult.disposedFailure;
       }
     }
-    throw StateError('Something was wrong');
   }
 }
 
@@ -103,7 +116,7 @@ class DisposeBag {
   final bool loggerEnabled;
 
   /// Logger that logs disposed resources
-  final Logger logger;
+  final Logger? logger;
   final _resources = <dynamic>{}; // <StreamSubscription | Sink>{}
   bool _isDisposed = false;
   bool _isDisposing = false;
@@ -113,7 +126,7 @@ class DisposeBag {
     Iterable<dynamic> disposables = const [],
     this.loggerEnabled = true,
     this.logger = _defaultLogger,
-  ]) : assert(loggerEnabled != null) {
+  ]) {
     _addAll(disposables);
   }
 
@@ -137,7 +150,7 @@ class DisposeBag {
   }
 
   /// Cancel [StreamSubscription] or close [Sink]
-  Future<dynamic> _disposeOne(dynamic disposable) {
+  Future<dynamic>? _disposeOne(dynamic disposable) {
     if (disposable is StreamSubscription) {
       return disposable.cancel();
     }
@@ -166,7 +179,7 @@ class DisposeBag {
           .where((pair) => pair.first != null)
           .toList(growable: false);
 
-      final futures = pairs.map((pair) => pair.first);
+      final futures = pairs.map((pair) => pair.first!);
       await Future.wait(futures);
 
       _resources.clear();
@@ -210,8 +223,7 @@ class DisposeBag {
   /// Atomically adds the given array of Disposables to the container or disposes them all if the container has been disposed.
   Future<bool> addAll(Iterable<dynamic> disposables) async {
     if (_isDisposed || _isDisposing) {
-      final futures =
-          disposables.map(_disposeOne).where((future) => future != null);
+      final futures = disposables.map(_disposeOne).whereNotNull();
       await Future.wait(futures);
       return false;
     }
