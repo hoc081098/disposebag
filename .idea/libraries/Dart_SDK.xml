@@ -18,6 +18,7 @@
       <root url="file://C:/Program Files/Dart/dart-sdk/lib/mirrors" />
       <root url="file://C:/Program Files/Dart/dart-sdk/lib/svg" />
       <root url="file://C:/Program Files/Dart/dart-sdk/lib/typed_data" />
+      <root url="file://C:/Program Files/Dart/dart-sdk/lib/wasm" />
       <root url="file://C:/Program Files/Dart/dart-sdk/lib/web_audio" />
       <root url="file://C:/Program Files/Dart/dart-sdk/lib/web_gl" />
       <root url="file://C:/Program Files/Dart/dart-sdk/lib/web_sql" />

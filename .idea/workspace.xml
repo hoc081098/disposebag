@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="e4129a3a-c433-4c03-b9d5-a7ab9f862eaa" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/extensions.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/extensions.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/disposebag_example.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/disposebag_example.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/disposebag_base.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/disposebag_base.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,18 +57,21 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="settings.editor.selected.configurable" value="dart.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
-  <component name="RunManager" selected="Dart Test.tests in disposebag_test.dart">
+  <component name="RunManager" selected="Dart Command Line App.disposebag_example.dart">
     <configuration name="disposebag_example.dart" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application" temporary="true" nameIsGenerated="true">
+      <option name="checkedMode" value="false" />
       <option name="filePath" value="$PROJECT_DIR$/example/disposebag_example.dart" />
       <option name="workingDirectory" value="$PROJECT_DIR$" />
       <method v="2" />
@@ -74,27 +99,22 @@
       <option name="testName" value="disposebag_test.dart" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Dart Command Line App.disposebag_example.dart" />
+      <item itemvalue="Dart Test.DisposeBag.clear in disposebag_test.dart" />
+      <item itemvalue="Dart Test.DisposeBag in disposebag_test.dart" />
+      <item itemvalue="Dart Test.Extensions in disposebag_test.dart" />
+      <item itemvalue="Dart Test.tests in disposebag_test.dart" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Dart Command Line App.disposebag_example.dart" />
         <item itemvalue="Dart Test.tests in disposebag_test.dart" />
         <item itemvalue="Dart Test.Extensions in disposebag_test.dart" />
-        <item itemvalue="Dart Command Line App.disposebag_example.dart" />
         <item itemvalue="Dart Test.DisposeBag in disposebag_test.dart" />
         <item itemvalue="Dart Test.DisposeBag.clear in disposebag_test.dart" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -198,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586589919985</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="release: 1.1.2">
+      <created>1586591485645</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1586591485645</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -206,13 +233,12 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
@@ -227,56 +253,66 @@
     <MESSAGE value="Update log" />
     <MESSAGE value="Publish 1.1.1+1" />
     <MESSAGE value="add(extensions): disposedBy on StreamSubscription and Sink" />
-    <option name="LAST_COMMIT_MESSAGE" value="add(extensions): disposedBy on StreamSubscription and Sink" />
+    <MESSAGE value="release: 1.1.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="release: 1.1.2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="123" y="0" width="1121" height="728" key="CommitChangelistDialog2" timestamp="1586589918522">
+    <state x="137" y="18" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596474494187">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="123" y="0" width="1121" height="728" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1586589918522" />
-    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog" timestamp="1579705537342">
+    <state x="137" y="18" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1596474494187" />
+    <state width="428" height="466" key="DebuggerActiveHint" timestamp="1596473422455">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1579705537342" />
-    <state width="1323" height="411" key="GridCell.Tab.0.bottom" timestamp="1586589797254">
+    <state width="428" height="466" key="DebuggerActiveHint/0.0.1366.728@0.0.1366.728" timestamp="1596473422455" />
+    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog" timestamp="1596518164640">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="411" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1586589797254" />
-    <state width="1323" height="411" key="GridCell.Tab.0.center" timestamp="1586589797254">
+    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1596518164640" />
+    <state width="1323" height="188" key="GridCell.Tab.0.bottom" timestamp="1596518061935">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="411" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1586589797254" />
-    <state width="1323" height="411" key="GridCell.Tab.0.left" timestamp="1586589797254">
+    <state width="1323" height="188" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1596518061935" />
+    <state width="1323" height="188" key="GridCell.Tab.0.center" timestamp="1596518061935">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="411" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1586589797254" />
-    <state width="1323" height="411" key="GridCell.Tab.0.right" timestamp="1586589797254">
+    <state width="1323" height="188" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1596518061935" />
+    <state width="1323" height="188" key="GridCell.Tab.0.left" timestamp="1596518061934">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="411" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1586589797254" />
-    <state x="186" y="10" key="SettingsEditor" timestamp="1579704484695">
+    <state width="1323" height="188" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1596518061934" />
+    <state width="1323" height="188" key="GridCell.Tab.0.right" timestamp="1596518061935">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="186" y="10" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1579704484695" />
-    <state x="275" y="101" key="Vcs.Push.Dialog.v2" timestamp="1586589921400">
+    <state width="1323" height="188" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1596518061935" />
+    <state x="184" y="8" key="SettingsEditor" timestamp="1596517453992">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="101" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1586589921400" />
-    <state x="391" y="193" key="com.intellij.ide.util.TipDialog" timestamp="1586588536164">
+    <state x="184" y="8" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1596517453992" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1596476406530">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="391" y="193" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1586588536164" />
-    <state x="404" y="168" key="git4idea.merge.GitPullDialog" timestamp="1586588544698">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="404" y="168" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1586588544698" />
-    <state x="339" y="162" key="run.anything.popup" timestamp="1579794992568">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1579794992568" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1586589735945">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1586589735945" />
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1596476406530" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://C:/Program Files/Dart/dart-sdk/lib/async/future.dart</url>
+          <line>440</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://C:/Program Files/Dart/dart-sdk/lib/async/future.dart</url>
+          <line>388</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://C:/Program Files/Dart/dart-sdk/lib/async/future.dart</url>
+          <line>355</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -21,8 +21,12 @@ main() async {
   final subscriptions = <StreamSubscription>[];
  
   final bag = DisposeBag([...subscriptions, ...controllers]);
+
+  await Stream.value(3).listen(null).disposedBy(bag);
+  await StreamController<int>.broadcast().disposedBy(bag);
+  await StreamController<int>.broadcast(sync: true).disposedBy(bag);
+
   await bag.dispose();
-  
   print("Bag disposed. It's all good");
 }
 ```

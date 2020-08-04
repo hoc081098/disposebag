@@ -1,12 +1,57 @@
 import 'dart:async';
 
-import 'package:meta/meta.dart';
 import 'package:collection/collection.dart';
+import 'package:meta/meta.dart';
 
-typedef Logger = void Function(Set<dynamic> resources);
+/// Represents the result of disposing or clearing.
+enum BagResult {
+  /// Disposed successfully.
+  disposedSuccess,
 
-void _defaultLogger(Set<dynamic> resources) {
-  print(' ↓ Disposed: ');
+  /// Cleared successfully.
+  clearedSuccess,
+
+  /// Disposed unsuccessfully.
+  disposedFailure,
+
+  /// Cleared unsuccessfully.
+  clearedFailure,
+}
+
+/// Logs the result of disposing or clearing.
+/// By default, prints the result to the console.
+typedef Logger = void Function(
+  BagResult result,
+  Set<dynamic> resources, [
+  Object error,
+  StackTrace stackTrace,
+]);
+
+void _defaultLogger(
+  BagResult result,
+  Set<dynamic> resources, [
+  Object error,
+  StackTrace stackTrace,
+]) {
+  switch (result) {
+    case BagResult.disposedSuccess:
+      print(' ↓ Disposed successfully: ');
+      break;
+    case BagResult.clearedSuccess:
+      print(' ↓ Cleared successfully: ');
+      break;
+    case BagResult.disposedFailure:
+      print(' ↓ Disposed unsuccessfully: ');
+      print('    → Error: $error');
+      print('    → StackTrace: $stackTrace');
+      break;
+    case BagResult.clearedFailure:
+      print(' ↓ Cleared unsuccessfully: ');
+      print('    → Error: $error');
+      print('    → StackTrace: $stackTrace');
+      break;
+  }
+
   print(resources.mapIndexed((i, e) => '   $i → $e').join('\n'));
 }
 
@@ -23,6 +68,32 @@ extension _MapIndexedIterableExtension<T> on Iterable<T> {
     for (final item in this) {
       yield mapper(index++, item);
     }
+  }
+}
+
+enum _Operation { clear, dispose }
+
+extension on _Operation {
+  BagResult toResult({
+    Object error,
+    StackTrace stackTrace,
+  }) {
+    if (error == null && stackTrace == null) {
+      switch (this) {
+        case _Operation.clear:
+          return BagResult.clearedSuccess;
+        case _Operation.dispose:
+          return BagResult.disposedSuccess;
+      }
+    } else {
+      switch (this) {
+        case _Operation.clear:
+          return BagResult.clearedFailure;
+        case _Operation.dispose:
+          return BagResult.disposedFailure;
+      }
+    }
+    throw StateError('Something was wrong');
   }
 }
 
@@ -80,31 +151,41 @@ class DisposeBag {
     return null;
   }
 
-  Future<void> _clear() async {
+  Future<bool> _clear(_Operation _operation) async {
     if (_isDisposed || _isDisposing) {
-      return;
+      return false;
     }
 
     /// Start dispose
     _isDisposing = true;
 
-    /// Await dispose
-    final pairs = _resources
-        .map((r) => _Pair(_disposeOne(r), r))
-        .where((pair) => pair.first != null)
-        .toList(growable: false);
+    try {
+      /// Await dispose
+      final pairs = _resources
+          .map((r) => _Pair(_disposeOne(r), r))
+          .where((pair) => pair.first != null)
+          .toList(growable: false);
 
-    final futures = pairs.map((pair) => pair.first);
-    await Future.wait(futures);
+      final futures = pairs.map((pair) => pair.first);
+      await Future.wait(futures);
 
-    if (loggerEnabled) {
-      final resources = pairs.map((pair) => pair.second).toSet();
-      logger?.call(UnmodifiableSetView(resources));
+      _resources.clear();
+
+      if (loggerEnabled) {
+        final resources = pairs.map((pair) => pair.second).toSet();
+        logger?.call(_operation.toResult(), UnmodifiableSetView(resources));
+      }
+
+      return true;
+    } catch (e, s) {
+      if (loggerEnabled) {
+        logger?.call(_operation.toResult(error: e, stackTrace: s), disposables);
+      }
+      return false;
+    } finally {
+      /// End dispose
+      _isDisposing = false;
     }
-
-    /// End dispose
-    _isDisposing = false;
-    _resources.clear();
   }
 
   /// Returns true if this resource has been disposed.
@@ -156,11 +237,14 @@ class DisposeBag {
   }
 
   /// Atomically clears the container, then disposes all the previously contained Disposables.
-  Future<void> clear() => _clear();
+  Future<bool> clear() => _clear(_Operation.clear);
 
   /// Dispose the resource, the operation should be idempotent.
-  Future<void> dispose() async {
-    await _clear();
-    _isDisposed = true;
+  Future<bool> dispose() async {
+    final result = await _clear(_Operation.dispose);
+    if (result) {
+      _isDisposed = true;
+    }
+    return result;
   }
 }
