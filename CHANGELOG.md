@@ -1,3 +1,7 @@
+## 1.2.0-nullsafety - Aug 4, 2020
+
+-   Null safety migration. Min sdk: 2.10 dev.
+
 ## 1.1.3 - Aug 4, 2020
 
 -   Updated: `README.md`.
