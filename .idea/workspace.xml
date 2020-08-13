@@ -19,16 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4129a3a-c433-4c03-b9d5-a7ab9f862eaa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/flutter_disposebag/lib/src/disposebag_mixin.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/disposebag.iml" beforeDir="false" afterPath="$PROJECT_DIR$/disposebag.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/disposebag_base.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/disposebag_base.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/disposebag_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/disposebag_test.dart" afterDir="false" />
-    </list>
+    <list default="true" id="e4129a3a-c433-4c03-b9d5-a7ab9f862eaa" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -115,8 +106,8 @@
       <item itemvalue="Dart Command Line App.disposebag_mixin.dart" />
       <item itemvalue="Dart Test.DisposeBag in disposebag_test.dart" />
       <item itemvalue="Dart Test.Extensions in disposebag_test.dart" />
-      <item itemvalue="Dart Test.tests in disposebag_test.dart" />
       <item itemvalue="Dart Test.description in disposebag_test.dart" />
+      <item itemvalue="Dart Test.tests in disposebag_test.dart" />
     </list>
     <recent_temporary>
       <list>
@@ -237,7 +228,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586591485645</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="add(flutter_disposebag)">
+      <created>1597295927791</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1597295927791</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -266,7 +264,8 @@
     <MESSAGE value="Publish 1.1.1+1" />
     <MESSAGE value="add(extensions): disposedBy on StreamSubscription and Sink" />
     <MESSAGE value="release: 1.1.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="release: 1.1.2" />
+    <MESSAGE value="add(flutter_disposebag)" />
+    <option name="LAST_COMMIT_MESSAGE" value="add(flutter_disposebag)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="137" y="18" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596474494187">
@@ -277,6 +276,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="392" y="92" key="#disposebag_mixin.dart/0.0.1366.728@0.0.1366.728" timestamp="1597061475018" />
+    <state x="337" y="0" key="CommitChangelistDialog2" timestamp="1597295926714">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="337" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1597295926714" />
     <state width="428" height="466" key="DebuggerActiveHint" timestamp="1596473422455">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -309,6 +312,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="8" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1597061541032" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1597295929828">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1597295929828" />
     <state x="94" y="25" key="new project wizard" timestamp="1596545321732">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
