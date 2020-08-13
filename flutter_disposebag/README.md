@@ -1,14 +1,51 @@
 # flutter_disposebag
 
-A package to help disposing Streams and closing Sinks easily for Flutter
+### Author: [Petrus Nguyễn Thái Học](https://github.com/hoc081098)
 
-## Getting Started
+![Pub](https://img.shields.io/pub/v/flutter_disposebag)
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+*   A package to help disposing Streams and closing Sinks easily for Flutter.
+*   Automatically disposes `StreamSubscription` and closes `Sink` when dispose `State<T>`.
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+## Usage
+
+A simple usage example:
+
+```dart
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_disposebag/flutter_disposebag.dart';
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> with DisposeBagMixin {
+  final controller = StreamController<int>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    Stream.periodic(const Duration(milliseconds: 500), (i) => i)
+        .listen((event) {})
+        .disposedBy(bag);
+
+    controller.stream.listen((event) {}).disposedBy(bag);
+    controller.disposedBy(bag);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+```
+
+## Features and bugs
+
+Please file feature requests and bugs at the [issue tracker][tracker].
+
+[tracker]: https://github.com/hoc081098/disposebag/issues/new
