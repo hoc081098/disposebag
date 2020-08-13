@@ -20,13 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4129a3a-c433-4c03-b9d5-a7ab9f862eaa" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/flutter_disposebag/lib/src/disposebag_mixin.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/disposebag_example.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/disposebag_example.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/disposebag.iml" beforeDir="false" afterPath="$PROJECT_DIR$/disposebag.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/disposebag_base.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/disposebag_base.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/disposebag_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/disposebag_test.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +52,11 @@
         <option name="title" value="Current Branch" />
       </GitPushTagMode>
     </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="null_safety" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1WhgftZWGzIarePWUZSWbmdzbSK" />
@@ -69,10 +75,14 @@
     <property name="settings.editor.selected.configurable" value="dart.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
-  <component name="RunManager" selected="Dart Command Line App.disposebag_example.dart">
-    <configuration name="disposebag_example.dart" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application" temporary="true" nameIsGenerated="true">
-      <option name="checkedMode" value="false" />
-      <option name="filePath" value="$PROJECT_DIR$/example/disposebag_example.dart" />
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Admin\Documents\Java\disposebag\flutter_disposebag\lib" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Dart Test.description in disposebag_test.dart">
+    <configuration name="disposebag_mixin.dart" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application" temporary="true" nameIsGenerated="true">
+      <option name="filePath" value="$PROJECT_DIR$/flutter_disposebag/lib/disposebag_mixin.dart" />
       <option name="workingDirectory" value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
@@ -82,37 +92,39 @@
       <option name="testName" value="DisposeBag" />
       <method v="2" />
     </configuration>
-    <configuration name="DisposeBag.clear in disposebag_test.dart" type="DartTestRunConfigurationType" factoryName="Dart Test" temporary="true" nameIsGenerated="true">
-      <option name="filePath" value="$PROJECT_DIR$/test/disposebag_test.dart" />
-      <option name="scope" value="GROUP_OR_TEST_BY_NAME" />
-      <option name="testName" value="DisposeBag.clear" />
-      <method v="2" />
-    </configuration>
     <configuration name="Extensions in disposebag_test.dart" type="DartTestRunConfigurationType" factoryName="Dart Test" temporary="true" nameIsGenerated="true">
       <option name="filePath" value="$PROJECT_DIR$/test/disposebag_test.dart" />
       <option name="scope" value="GROUP_OR_TEST_BY_NAME" />
       <option name="testName" value="Extensions" />
       <method v="2" />
     </configuration>
-    <configuration name="tests in disposebag_test.dart" type="DartTestRunConfigurationType" factoryName="Dart Test" temporary="true" nameIsGenerated="true">
+    <configuration name="description in disposebag_test.dart" type="DartTestRunConfigurationType" factoryName="Dart Test" temporary="true" nameIsGenerated="true">
       <option name="filePath" value="$PROJECT_DIR$/test/disposebag_test.dart" />
-      <option name="testName" value="disposebag_test.dart" />
+      <option name="scope" value="GROUP_OR_TEST_BY_NAME" />
+      <option name="testName" value="description" />
+      <method v="2" />
+    </configuration>
+    <configuration name="tests in disposebag_test.dart" type="DartTestRunConfigurationType" factoryName="Dart Test" temporary="true" nameIsGenerated="true">
+      <option name="envs">
+        <entry key="--enable-experiment" value="non-nullable" />
+      </option>
+      <option name="filePath" value="$PROJECT_DIR$/test/disposebag_test.dart" />
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Dart Command Line App.disposebag_example.dart" />
-      <item itemvalue="Dart Test.DisposeBag.clear in disposebag_test.dart" />
+      <item itemvalue="Dart Command Line App.disposebag_mixin.dart" />
       <item itemvalue="Dart Test.DisposeBag in disposebag_test.dart" />
       <item itemvalue="Dart Test.Extensions in disposebag_test.dart" />
       <item itemvalue="Dart Test.tests in disposebag_test.dart" />
+      <item itemvalue="Dart Test.description in disposebag_test.dart" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Dart Command Line App.disposebag_example.dart" />
+        <item itemvalue="Dart Test.description in disposebag_test.dart" />
         <item itemvalue="Dart Test.tests in disposebag_test.dart" />
-        <item itemvalue="Dart Test.Extensions in disposebag_test.dart" />
         <item itemvalue="Dart Test.DisposeBag in disposebag_test.dart" />
-        <item itemvalue="Dart Test.DisposeBag.clear in disposebag_test.dart" />
+        <item itemvalue="Dart Command Line App.disposebag_mixin.dart" />
+        <item itemvalue="Dart Test.Extensions in disposebag_test.dart" />
       </list>
     </recent_temporary>
   </component>
@@ -261,6 +273,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="137" y="18" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1596474494187" />
+    <state x="392" y="92" key="#disposebag_mixin.dart" timestamp="1597061475018">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="392" y="92" key="#disposebag_mixin.dart/0.0.1366.728@0.0.1366.728" timestamp="1597061475018" />
     <state width="428" height="466" key="DebuggerActiveHint" timestamp="1596473422455">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -269,26 +285,34 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="92" y="92" width="1182" height="544" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1596518164640" />
-    <state width="1323" height="188" key="GridCell.Tab.0.bottom" timestamp="1596518061935">
+    <state x="491" y="83" key="FileChooserDialogImpl" timestamp="1596545262353">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="188" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1596518061935" />
-    <state width="1323" height="188" key="GridCell.Tab.0.center" timestamp="1596518061935">
+    <state x="491" y="83" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1596545262353" />
+    <state width="1323" height="321" key="GridCell.Tab.0.bottom" timestamp="1597063252383">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="188" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1596518061935" />
-    <state width="1323" height="188" key="GridCell.Tab.0.left" timestamp="1596518061934">
+    <state width="1323" height="321" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1597063252383" />
+    <state width="1323" height="321" key="GridCell.Tab.0.center" timestamp="1597063252383">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="188" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1596518061934" />
-    <state width="1323" height="188" key="GridCell.Tab.0.right" timestamp="1596518061935">
+    <state width="1323" height="321" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1597063252383" />
+    <state width="1323" height="321" key="GridCell.Tab.0.left" timestamp="1597063252383">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="188" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1596518061935" />
-    <state x="184" y="8" key="SettingsEditor" timestamp="1596517453992">
+    <state width="1323" height="321" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1597063252383" />
+    <state width="1323" height="321" key="GridCell.Tab.0.right" timestamp="1597063252383">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="184" y="8" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1596517453992" />
+    <state width="1323" height="321" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1597063252383" />
+    <state x="184" y="8" key="SettingsEditor" timestamp="1597061541032">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="184" y="8" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1597061541032" />
+    <state x="94" y="25" key="new project wizard" timestamp="1596545321732">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="94" y="25" key="new project wizard/0.0.1366.728@0.0.1366.728" timestamp="1596545321732" />
     <state x="339" y="162" key="run.anything.popup" timestamp="1596476406530">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

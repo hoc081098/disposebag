@@ -1,0 +1,24 @@
+name: flutter_disposebag
+description: A package to help disposing Streams and closing Sinks easily for Flutter
+version: 1.0.0
+author: Petrus Nguyễn Thái Học <hoc081098@gmail.com>
+homepage: https://github.com/hoc081098/disposebag.git
+repository: https://github.com/hoc081098/disposebag.git
+issue_tracker: https://github.com/hoc081098/disposebag/issues
+
+environment:
+  sdk: '>=2.7.0 <3.0.0'
+
+dependencies:
+  meta: ^1.1.6
+  disposebag: '>=1.0.0 <2.0.0'
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+
