@@ -19,7 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4129a3a-c433-4c03-b9d5-a7ab9f862eaa" name="Default Changelist" comment="" />
+    <list default="true" id="e4129a3a-c433-4c03-b9d5-a7ab9f862eaa" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -235,7 +238,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597295927791</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="[flutter_disposebag] update pubspec.yaml">
+      <created>1597296056733</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1597296056733</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -265,7 +275,8 @@
     <MESSAGE value="add(extensions): disposedBy on StreamSubscription and Sink" />
     <MESSAGE value="release: 1.1.2" />
     <MESSAGE value="add(flutter_disposebag)" />
-    <option name="LAST_COMMIT_MESSAGE" value="add(flutter_disposebag)" />
+    <MESSAGE value="[flutter_disposebag] update pubspec.yaml" />
+    <option name="LAST_COMMIT_MESSAGE" value="[flutter_disposebag] update pubspec.yaml" />
   </component>
   <component name="WindowStateProjectService">
     <state x="137" y="18" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596474494187">
@@ -276,10 +287,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="392" y="92" key="#disposebag_mixin.dart/0.0.1366.728@0.0.1366.728" timestamp="1597061475018" />
-    <state x="337" y="0" key="CommitChangelistDialog2" timestamp="1597295926714">
+    <state x="337" y="0" key="CommitChangelistDialog2" timestamp="1597296055898">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="337" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1597295926714" />
+    <state x="337" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1597296055898" />
     <state width="428" height="466" key="DebuggerActiveHint" timestamp="1596473422455">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -312,10 +323,14 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="8" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1597061541032" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1597295929828">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1597296057240">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1597295929828" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1597296057240" />
+    <state x="400" y="152" key="git4idea.merge.GitPullDialog" timestamp="1597296341207">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="400" y="152" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1597296341207" />
     <state x="94" y="25" key="new project wizard" timestamp="1596545321732">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

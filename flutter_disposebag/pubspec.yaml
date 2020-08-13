@@ -1,5 +1,5 @@
 name: flutter_disposebag
-description: A package to help disposing Streams and closing Sinks easily for Flutter
+description: Automatically disposes StreamSubscription and closes Sink when disposing State<T>.
 version: 1.0.0
 author: Petrus Nguyễn Thái Học <hoc081098@gmail.com>
 homepage: https://github.com/hoc081098/disposebag/tree/master/flutter_disposebag
