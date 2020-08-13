@@ -5,7 +5,7 @@
 ![Pub](https://img.shields.io/pub/v/flutter_disposebag)
 
 *   A package to help disposing Streams and closing Sinks easily for Flutter.
-*   Automatically disposes `StreamSubscription` and closes `Sink` when dispose `State<T>`.
+*   Automatically disposes `StreamSubscription` and closes `Sink` when disposing `State<T>`.
 
 ## Usage
 
