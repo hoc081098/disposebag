@@ -1,23 +1,14 @@
-os:
-  - linux
-sudo: false
-addons:
-  apt:
-    # Flutter depends on /usr/lib/x86_64-linux-gnu/libstdc++.so.6 version GLIBCXX_3.4.18
-    sources:
-      - ubuntu-toolchain-r-test # if we don't specify this, the libstdc++6 we get is the wrong version
-    packages:
-      - lib32stdc++6 # https://github.com/flutter/flutter/issues/6207
-      - libstdc++6
-      - fonts-droid-fallback
-before_script:
-  - git clone https://github.com/flutter/flutter.git -b master
-  - ./flutter/bin/flutter doctor
-  - ./flutter/bin/flutter packages get
+language: dart
+dart:
+  - stable
+  - dev
 script:
-  - ./flutter/bin/flutter analyze --no-current-package --dartdocs $TRAVIS_BUILD_DIR/lib
-  - ./flutter/bin/cache/dart-sdk/bin/dartfmt -n ./lib --set-exit-if-changed
-  - ./flutter/bin/flutter test --coverage --coverage-path=lcov.info
+  - dartanalyzer --fatal-infos --fatal-warnings ./lib ./test
+  - dartfmt -n ./lib --set-exit-if-changed
+  - pub get
+  - pub global activate coverage
+  - pub run test test/disposebag_test.dart --coverage=coverage
+  - pub global run coverage:format_coverage --in coverage/test/disposebag_test.dart.vm.json --out lcov.info --lcov
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 cache:
