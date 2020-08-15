@@ -262,6 +262,62 @@ void main() {
         expect(controller2.isClosed, isTrue);
       });
     });
+
+    group('DisposeBag.guardType', () {
+      test('DisposeBag.add', () {
+        expect(() => DisposeBag().add(null), throwsArgumentError);
+        expect(() => DisposeBag().add(1), throwsArgumentError);
+      });
+
+      test('DisposeBag.addAll', () {
+        expect(
+          () => DisposeBag().addAll(
+            [
+              null,
+              Stream.value(1).listen(null),
+            ],
+          ),
+          throwsArgumentError,
+        );
+
+        expect(
+          () => DisposeBag().addAll(
+            [
+              1,
+              Stream.value(1).listen(null),
+            ],
+          ),
+          throwsArgumentError,
+        );
+      });
+    });
+
+    test('DisposeBag.disposables', () {
+      final disposeBag = DisposeBag();
+      disposeBag.addAll([
+        Stream.value(1).listen((event) {}),
+        Stream.value(2).listen((event) {}),
+        Stream.value(3).listen((event) {}),
+      ]);
+      expect(disposeBag.disposables.length, 3);
+      disposeBag.disposables.forEach(
+        (s) => expect(
+          s,
+          const TypeMatcher<StreamSubscription<int>>(),
+        ),
+      );
+    });
+
+    test('DisposeBag.isDisposed', () async {
+      final disposeBag = DisposeBag([
+        Stream.value(1).listen((event) {}),
+        Stream.value(2).listen((event) {}),
+        Stream.value(3).listen((event) {}),
+      ]);
+      await disposeBag.dispose();
+      expect(disposeBag.disposables.isEmpty, isTrue);
+      expect(disposeBag.isDisposed, isTrue);
+    });
   });
 
   group('Extensions', () {
