@@ -3,16 +3,12 @@ dart:
   - stable
   - dev
 script:
-  - dartanalyzer --fatal-infos --fatal-warnings ./lib ./test
-  - dartfmt -n ./lib --set-exit-if-changed
-  - pub get
+  - pub run test
   - pub global activate coverage
-  - pub global run coverage:collect_coverage --port=8111 -o coverage.json --resume-isolates --wait-paused &
-  - dart test/disposebag_test.dart
+  - dart --observe=8111 test/disposebag_test.dart &
+  - sleep 1
+  - pub global run coverage:collect_coverage --port=8111 -o coverage.json --resume-isolates
   - pub global run coverage:format_coverage --package-root=packages --report-on lib --in coverage.json --out lcov.info --lcov
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-cache:
-  directories:
-    - $HOME/.pub-cache
