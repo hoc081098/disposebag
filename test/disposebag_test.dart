@@ -13,6 +13,8 @@ class MockDisposeBag extends Mock implements DisposeBag {}
 
 class MockSink extends Mock implements Sink<int> {}
 
+class MockStreamSubscription extends Mock implements StreamSubscription<int> {}
+
 void main() {
   group('DisposeBag', () {
     group('DisposeBag.add', () {
@@ -322,6 +324,31 @@ void main() {
       await disposeBag.dispose();
       expect(disposeBag.disposables.isEmpty, isTrue);
       expect(disposeBag.isDisposed, isTrue);
+    });
+
+    test('DisposeBag.dispose.failed', () async {
+      final disposeBag = DisposeBag();
+      final mockStreamSubscription = MockStreamSubscription();
+
+      when(mockStreamSubscription.cancel()).thenAnswer(
+        (realInvocation) async => throw Exception(),
+      );
+
+      await disposeBag.add(mockStreamSubscription);
+      expect(await disposeBag.dispose(), false);
+      expect(disposeBag.isDisposed, false);
+    });
+
+    test('DisposeBag.clear.failed', () async {
+      final disposeBag = DisposeBag();
+      final mockStreamSubscription = MockStreamSubscription();
+
+      when(mockStreamSubscription.cancel()).thenAnswer(
+        (realInvocation) async => throw Exception(),
+      );
+
+      await disposeBag.add(mockStreamSubscription);
+      expect(await disposeBag.clear(), false);
     });
   });
 

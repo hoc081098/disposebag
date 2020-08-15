@@ -20,7 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4129a3a-c433-4c03-b9d5-a7ab9f862eaa" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/disposebag_base.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/disposebag_base.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/disposebag_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/disposebag_test.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -87,16 +87,16 @@
       <option name="testName" value="DisposeBag.add.sink" />
       <method v="2" />
     </configuration>
-    <configuration name="DisposeBag.disposables in disposebag_test.dart" type="DartTestRunConfigurationType" factoryName="Dart Test" temporary="true" nameIsGenerated="true">
+    <configuration name="DisposeBag.clear.failed in disposebag_test.dart" type="DartTestRunConfigurationType" factoryName="Dart Test" temporary="true" nameIsGenerated="true">
       <option name="filePath" value="$PROJECT_DIR$/test/disposebag_test.dart" />
       <option name="scope" value="GROUP_OR_TEST_BY_NAME" />
-      <option name="testName" value="DisposeBag.disposables" />
+      <option name="testName" value="DisposeBag.clear.failed" />
       <method v="2" />
     </configuration>
-    <configuration name="DisposeBag.isDisposed in disposebag_test.dart" type="DartTestRunConfigurationType" factoryName="Dart Test" temporary="true" nameIsGenerated="true">
+    <configuration name="DisposeBag.dispose.failed in disposebag_test.dart" type="DartTestRunConfigurationType" factoryName="Dart Test" temporary="true" nameIsGenerated="true">
       <option name="filePath" value="$PROJECT_DIR$/test/disposebag_test.dart" />
       <option name="scope" value="GROUP_OR_TEST_BY_NAME" />
-      <option name="testName" value="DisposeBag.isDisposed" />
+      <option name="testName" value="DisposeBag.dispose.failed" />
       <method v="2" />
     </configuration>
     <configuration name="tests in disposebag_test.dart" type="DartTestRunConfigurationType" factoryName="Dart Test" temporary="true" nameIsGenerated="true">
@@ -108,18 +108,18 @@
     </configuration>
     <list>
       <item itemvalue="Dart Test.tests in disposebag_test.dart" />
-      <item itemvalue="Dart Test.DisposeBag.disposables in disposebag_test.dart" />
-      <item itemvalue="Dart Test.DisposeBag.isDisposed in disposebag_test.dart" />
       <item itemvalue="Dart Test.DisposeBag.addAll in disposebag_test.dart" />
       <item itemvalue="Dart Test.DisposeBag.add.sink in disposebag_test.dart" />
+      <item itemvalue="Dart Test.DisposeBag.dispose.failed in disposebag_test.dart" />
+      <item itemvalue="Dart Test.DisposeBag.clear.failed in disposebag_test.dart" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Dart Test.tests in disposebag_test.dart" />
+        <item itemvalue="Dart Test.DisposeBag.clear.failed in disposebag_test.dart" />
+        <item itemvalue="Dart Test.DisposeBag.dispose.failed in disposebag_test.dart" />
         <item itemvalue="Dart Test.DisposeBag.add.sink in disposebag_test.dart" />
         <item itemvalue="Dart Test.DisposeBag.addAll in disposebag_test.dart" />
-        <item itemvalue="Dart Test.DisposeBag.isDisposed in disposebag_test.dart" />
-        <item itemvalue="Dart Test.DisposeBag.disposables in disposebag_test.dart" />
       </list>
     </recent_temporary>
   </component>
@@ -260,7 +260,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597494529886</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="add tests">
+      <created>1597494951886</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1597494951886</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -293,7 +300,8 @@
     <MESSAGE value="[flutter_disposebag] update pubspec.yaml" />
     <MESSAGE value="[flutter_disposebag] add example" />
     <MESSAGE value="add test" />
-    <option name="LAST_COMMIT_MESSAGE" value="add test" />
+    <MESSAGE value="add tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="add tests" />
   </component>
   <component name="WindowStateProjectService">
     <state x="137" y="18" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596474494187">
@@ -304,10 +312,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="392" y="92" key="#disposebag_mixin.dart/0.0.1366.728@0.0.1366.728" timestamp="1597061475018" />
-    <state x="337" y="0" key="CommitChangelistDialog2" timestamp="1597494528803">
+    <state x="337" y="0" key="CommitChangelistDialog2" timestamp="1597494950942">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="337" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1597494528803" />
+    <state x="337" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1597494950942" />
     <state width="428" height="466" key="DebuggerActiveHint" timestamp="1596473422455">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -320,30 +328,30 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="491" y="83" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1596545262353" />
-    <state width="1323" height="263" key="GridCell.Tab.0.bottom" timestamp="1597494923310">
+    <state width="1323" height="228" key="GridCell.Tab.0.bottom" timestamp="1597495453602">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="263" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1597494923310" />
-    <state width="1323" height="263" key="GridCell.Tab.0.center" timestamp="1597494923310">
+    <state width="1323" height="228" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1597495453602" />
+    <state width="1323" height="228" key="GridCell.Tab.0.center" timestamp="1597495453602">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="263" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1597494923310" />
-    <state width="1323" height="263" key="GridCell.Tab.0.left" timestamp="1597494923310">
+    <state width="1323" height="228" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1597495453602" />
+    <state width="1323" height="228" key="GridCell.Tab.0.left" timestamp="1597495453602">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="263" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1597494923310" />
-    <state width="1323" height="263" key="GridCell.Tab.0.right" timestamp="1597494923310">
+    <state width="1323" height="228" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1597495453602" />
+    <state width="1323" height="228" key="GridCell.Tab.0.right" timestamp="1597495453602">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="263" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1597494923310" />
+    <state width="1323" height="228" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1597495453602" />
     <state x="184" y="8" key="SettingsEditor" timestamp="1597061541032">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="8" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1597061541032" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1597494530467">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1597494952948">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1597494530467" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1597494952948" />
     <state x="400" y="152" key="git4idea.merge.GitPullDialog" timestamp="1597492933546">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

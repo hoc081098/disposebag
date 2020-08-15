@@ -183,7 +183,12 @@ class DisposeBag {
       return isSuccessful;
     } catch (e, s) {
       if (loggerEnabled) {
-        logger?.call(_operation.toResult(error: e, stackTrace: s), disposables);
+        logger?.call(
+          _operation.toResult(error: e, stackTrace: s),
+          disposables,
+          e,
+          s,
+        );
       }
       return false;
     } finally {
