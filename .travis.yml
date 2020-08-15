@@ -7,8 +7,7 @@ script:
   - dartfmt -n ./lib --set-exit-if-changed
   - pub get
   - pub global activate coverage
-  - pub run test test/disposebag_test.dart --coverage=coverage
-  - pub global run coverage:format_coverage --in coverage/test/disposebag_test.dart.vm.json --out lcov.info --lcov
+  - pub run test test/disposebag_test.dart --coverage --coverage-path=lcov.info
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 cache:
