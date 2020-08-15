@@ -74,6 +74,7 @@ extension _MapIndexedIterableExtension<T> on Iterable<T> {
 enum _Operation { clear, dispose }
 
 extension on _Operation {
+  // ignore: missing_return
   BagResult toResult({
     Object error,
     StackTrace stackTrace,
@@ -93,7 +94,6 @@ extension on _Operation {
           return BagResult.disposedFailure;
       }
     }
-    throw StateError('Something was wrong');
   }
 }
 
