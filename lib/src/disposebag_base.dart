@@ -97,6 +97,19 @@ extension on _Operation {
   }
 }
 
+void _guardType(dynamic disposable) {
+  if (disposable == null) {
+    throw ArgumentError.notNull('disposable');
+  }
+  if (!(disposable is StreamSubscription || disposable is Sink)) {
+    throw ArgumentError.value(
+        disposable, 'disposable', 'must be a StreamSubscription or a Sink');
+  }
+}
+
+void _guardTypeMany(Iterable<dynamic> disposable) =>
+    disposable.forEach(_guardType);
+
 /// Class that helps closing sinks and canceling stream subscriptions
 class DisposeBag {
   /// Enabled logger
@@ -114,26 +127,7 @@ class DisposeBag {
     this.loggerEnabled = true,
     this.logger = _defaultLogger,
   ]) : assert(loggerEnabled != null) {
-    _addAll(disposables);
-  }
-
-  void _addAll(Iterable<dynamic> disposables) {
-    for (final item in disposables) {
-      _addOne(item);
-    }
-  }
-
-  /// Add one item to resources, only add if item is [StreamSubscription] or item is [Sink]
-  bool _addOne(dynamic item) {
-    if (item == null) {
-      return false;
-    }
-
-    if (item is StreamSubscription || item is Sink) {
-      return _resources.add(item);
-    }
-
-    return false;
+    _resources.addAll(disposables);
   }
 
   /// Cancel [StreamSubscription] or close [Sink]
@@ -161,22 +155,32 @@ class DisposeBag {
 
     try {
       /// Await dispose
-      final pairs = _resources
-          .map((r) => _Pair(_disposeOne(r), r))
-          .where((pair) => pair.first != null)
-          .toList(growable: false);
 
-      final futures = pairs.map((pair) => pair.first);
-      await Future.wait(futures);
+      Future<Iterable<T>> _disposeByType<T>() async {
+        final pairs = _resources
+            .whereType<T>()
+            .map((r) => _Pair(_disposeOne(r), r))
+            .where((pair) => pair.first != null)
+            .toList(growable: false);
 
-      _resources.clear();
+        final future = pairs.map((pair) => pair.first);
+        await Future.wait(future);
 
-      if (loggerEnabled) {
-        final resources = pairs.map((pair) => pair.second).toSet();
+        return pairs.map((pair) => pair.second);
+      }
+
+      final sinks = await _disposeByType<Sink>();
+      final subscriptions = await _disposeByType<StreamSubscription>();
+      final resources = {...sinks, ...subscriptions};
+
+      _resources.removeAll(resources);
+      final isSuccessful = _resources.isEmpty;
+
+      if (loggerEnabled && isSuccessful) {
         logger?.call(_operation.toResult(), UnmodifiableSetView(resources));
       }
 
-      return true;
+      return isSuccessful;
     } catch (e, s) {
       if (loggerEnabled) {
         logger?.call(_operation.toResult(error: e, stackTrace: s), disposables);
@@ -200,39 +204,51 @@ class DisposeBag {
 
   /// Adds a disposable to this container or disposes it if the container has been disposed.
   Future<bool> add(dynamic disposable) async {
+    _guardType(disposable);
+
     if (_isDisposed || _isDisposing) {
       await _disposeOne(disposable);
       return false;
     }
-    return _addOne(disposable);
+
+    return _resources.add(disposable);
   }
 
   /// Atomically adds the given array of Disposables to the container or disposes them all if the container has been disposed.
   Future<bool> addAll(Iterable<dynamic> disposables) async {
+    _guardTypeMany(disposables);
+
     if (_isDisposed || _isDisposing) {
       final futures =
           disposables.map(_disposeOne).where((future) => future != null);
       await Future.wait(futures);
       return false;
     }
-    _addAll(disposables);
+
+    _resources.addAll(disposables);
     return true;
   }
 
   /// Removes and disposes the given disposable if it is part of this container.
   Future<bool> remove(dynamic disposable) async {
+    _guardType(disposable);
+
     if (await delete(disposable)) {
       await _disposeOne(disposable);
       return true;
     }
+
     return false;
   }
 
   /// Removes (but does not dispose) the given disposable if it is part of this container.
   Future<bool> delete(dynamic disposable) async {
+    _guardType(disposable);
+
     if (_isDisposed || _isDisposing) {
       return false;
     }
+
     return _resources.remove(disposable);
   }
 
