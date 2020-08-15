@@ -127,6 +127,7 @@ class DisposeBag {
     this.loggerEnabled = true,
     this.logger = _defaultLogger,
   ]) : assert(loggerEnabled != null) {
+    _guardTypeMany(disposables);
     _resources.addAll(disposables);
   }
 

@@ -297,6 +297,24 @@ void main() {
           throwsArgumentError,
         );
       });
+
+      test('DisposeBag.constructor', () {
+        expect(
+          () => DisposeBag([
+            1,
+            Stream.value(1).listen(null),
+          ]),
+          throwsArgumentError,
+        );
+
+        expect(
+          () => DisposeBag([
+            null,
+            Stream.value(1).listen(null),
+          ]),
+          throwsArgumentError,
+        );
+      });
     });
 
     test('DisposeBag.disposables', () {

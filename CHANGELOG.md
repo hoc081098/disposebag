@@ -1,6 +1,10 @@
+## 1.2.0 - Aug 15, 2020
+
+-   Updated: `constructor` allow only **`Sink | StreamSubscription`** type.
+
 ## 1.1.4 - Aug 15, 2020
 
--   Updated: methods `add`, `addAll`, `remove`, `delete`, `constructor` allow only **`Sink | StreamSubscription`** type.
+-   Updated: methods `add`, `addAll`, `remove` and `delete` allow only **`Sink | StreamSubscription`** type.
 -   Updated: internal implementation.
 -   Fixed: default logger logs `error` and `StackTrace` to console, before missing.
 
