@@ -1,6 +1,13 @@
+## 1.1.4 - Aug 15, 2020
+
+-   Updated: methods `add`, `addAll`, `remove`, `delete`, `constructor` allow only **`Sink | StreamSubscription`** type.
+-   Updated: internal implementation.
+-   Fixed: default logger logs `error` and `StackTrace` to console, before missing.
+
 ## 1.1.3 - Aug 4, 2020
 
 -   Updated: `README.md`.
+
 -   Breaking change: Change `Logger`'s signature.
     The `clear` and `dispose` methods now returns a `Future<bool>` instead of `Future<void>`.
 

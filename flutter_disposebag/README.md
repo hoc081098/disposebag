@@ -1,6 +1,6 @@
 # flutter_disposebag
 
-### Author: [Petrus Nguyễn Thái Học](https://github.com/hoc081098)
+## Author: [Petrus Nguyễn Thái Học](https://github.com/hoc081098)
 
 [![Pub](https://img.shields.io/pub/v/flutter_disposebag)](https://pub.dev/packages/flutter_disposebag)
 
