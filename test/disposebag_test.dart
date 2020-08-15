@@ -11,6 +11,8 @@ const _maxCount = 5;
 
 class MockDisposeBag extends Mock implements DisposeBag {}
 
+class MockSink extends Mock implements Sink<int> {}
+
 void main() {
   group('DisposeBag', () {
     group('DisposeBag.add', () {
@@ -62,11 +64,14 @@ void main() {
 
       test('DisposeBag.add.sink', () async {
         final controller = StreamController<int>()..stream.listen(null);
+        final sink = MockSink();
         final bag = DisposeBag();
 
+        await bag.add(sink);
         await bag.add(controller);
         await bag.dispose();
 
+        verify(sink.close()).called(1);
         expect(controller.isClosed, true);
       });
 
