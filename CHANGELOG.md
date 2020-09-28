@@ -1,3 +1,7 @@
+## 1.3.0 - Sep 29, 2020
+
+-   Bugfix: `Uncaught Error: Bad state: Cannot add event after closing`.
+
 ## 1.2.0 - Aug 15, 2020
 
 -   Updated: `constructor` allow only **`Sink | StreamSubscription`** type.

@@ -56,6 +56,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="8et8hxly" />
+  </component>
   <component name="ProjectId" id="1WhgftZWGzIarePWUZSWbmdzbSK" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -126,6 +129,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -291,7 +295,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597497202193</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="1.2.0">
+      <created>1597498269145</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1597498269145</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -326,7 +337,8 @@
     <MESSAGE value="add tests" />
     <MESSAGE value="up" />
     <MESSAGE value="1.1.4" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.1.4" />
+    <MESSAGE value="1.2.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.2.0" />
   </component>
   <component name="WindowStateProjectService">
     <state x="137" y="18" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596474494187">
@@ -337,10 +349,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="392" y="92" key="#disposebag_mixin.dart/0.0.1366.728@0.0.1366.728" timestamp="1597061475018" />
-    <state x="337" y="0" key="CommitChangelistDialog2" timestamp="1597497201210">
+    <state x="337" y="0" key="CommitChangelistDialog2" timestamp="1597498267949">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="337" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1597497201210" />
+    <state x="337" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1597498267949" />
     <state width="428" height="466" key="DebuggerActiveHint" timestamp="1596473422455">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -353,30 +365,30 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="491" y="83" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1596545262353" />
-    <state width="1323" height="402" key="GridCell.Tab.0.bottom" timestamp="1597497450229">
+    <state width="1323" height="336" key="GridCell.Tab.0.bottom" timestamp="1601316982137">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="402" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1597497450229" />
-    <state width="1323" height="402" key="GridCell.Tab.0.center" timestamp="1597497450229">
+    <state width="1323" height="336" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1601316982137" />
+    <state width="1323" height="336" key="GridCell.Tab.0.center" timestamp="1601316982137">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="402" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1597497450229" />
-    <state width="1323" height="402" key="GridCell.Tab.0.left" timestamp="1597497450229">
+    <state width="1323" height="336" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1601316982137" />
+    <state width="1323" height="336" key="GridCell.Tab.0.left" timestamp="1601316982137">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="402" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1597497450229" />
-    <state width="1323" height="402" key="GridCell.Tab.0.right" timestamp="1597497450229">
+    <state width="1323" height="336" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1601316982137" />
+    <state width="1323" height="336" key="GridCell.Tab.0.right" timestamp="1601316982137">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="402" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1597497450229" />
+    <state width="1323" height="336" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1601316982137" />
     <state x="184" y="8" key="SettingsEditor" timestamp="1597061541032">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="8" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1597061541032" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1597497203180">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1597498270710">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1597497203180" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1597498270710" />
     <state x="400" y="152" key="git4idea.merge.GitPullDialog" timestamp="1597497168372">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -389,6 +401,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1596476406530" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1601316158727">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1601316158727" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

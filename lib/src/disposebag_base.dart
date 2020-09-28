@@ -170,8 +170,8 @@ class DisposeBag {
         return pairs.map((pair) => pair.second);
       }
 
-      final sinks = await _disposeByType<Sink>();
       final subscriptions = await _disposeByType<StreamSubscription>();
+      final sinks = await _disposeByType<Sink>();
       final resources = {...sinks, ...subscriptions};
 
       _resources.removeAll(resources);
