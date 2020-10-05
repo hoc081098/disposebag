@@ -172,7 +172,7 @@ class DisposeBag {
 
       final subscriptions = await _disposeByType<StreamSubscription>();
       final sinks = await _disposeByType<Sink>();
-      final resources = {...sinks, ...subscriptions};
+      final resources = {...subscriptions, ...sinks};
 
       _resources.removeAll(resources);
       final isSuccessful = _resources.isEmpty;

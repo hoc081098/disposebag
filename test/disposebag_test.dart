@@ -402,10 +402,30 @@ void main() {
       verify(bag.add(subscription)).called(1);
     });
 
-    test('StreamSubscription.disposedBy', () {
+    test('Sink.disposedBy', () {
       final controller = StreamController<void>();
       controller.disposedBy(bag);
       verify(bag.add(controller)).called(1);
+    });
+
+    test('Iterable<StreamSubscription>.disposedBy', () {
+      final subscription1 = Stream.value(1).listen(null);
+      final subscription2 = Stream.value(1).listen(null);
+
+      final subscriptions = [subscription1, subscription2];
+      subscriptions.disposedBy(bag);
+
+      verify(bag.addAll(subscriptions)).called(1);
+    });
+
+    test('Iterable<Sink>.disposedBy', () {
+      final controller1 = StreamController<void>();
+      final controller2 = StreamController<void>();
+
+      final sinks = [controller1, controller2];
+      sinks.disposedBy(bag);
+
+      verify(bag.addAll(sinks)).called(1);
     });
   });
 }

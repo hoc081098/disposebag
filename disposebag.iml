@@ -4,9 +4,11 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/libraries" />
       <excludeFolder url="file://$MODULE_DIR$/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
       <excludeFolder url="file://$MODULE_DIR$/flutter_disposebag/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_disposebag/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/flutter_disposebag/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/flutter_disposebag/build" />
     </content>
