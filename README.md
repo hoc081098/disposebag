@@ -35,6 +35,44 @@ main() async {
 }
 ```
 
+### API
+
+## 1. Add, addAll
+
+```dart
+Future<bool> DisposeBag.add(StreamSubscription);
+Future<bool> DisposeBag.add(Sink);
+Future<bool> DisposeBag.addAll(Iterable<StreamSubscription>);
+Future<bool> DisposeBag.addAll(Iterable<Sink>);
+
+// extension methods
+Future<bool> StreamSubscription.disposedBy(DisposeBag);
+Future<bool> Sink.disposedBy(DisposeBag);
+Future<bool> Iterable<StreamSubscription>.disposedBy(DisposeBag);
+Future<bool> Iterable<Sink>.disposedBy(DisposeBag);
+```
+
+## 2. Delete (removes but does not dispose)
+
+```dart
+Future<bool> delete(StreamSubscription);
+Future<bool> delete(Sink);
+```
+
+## 3. Remove (removes and disposes)
+
+```dart
+Future<bool> remove(StreamSubscription);
+Future<bool> remove(Sink);
+```
+
+## 4. Clear, dispose
+
+```dart
+Future<bool> clear();
+Future<bool> dispose();
+```
+
 ## Features and bugs
 
 Please file feature requests and bugs at the [issue tracker][tracker].

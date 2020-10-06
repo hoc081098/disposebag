@@ -1,3 +1,8 @@
+## 1.3.1 - Oct 6, 2020
+
+-   Add extension for `Iterable<Sink>` and `Iterable<StreamSubscription>`.
+-   Update docs.
+
 ## 1.3.0 - Sep 29, 2020
 
 -   Bugfix: `Uncaught Error: Bad state: Cannot add event after closing`.
