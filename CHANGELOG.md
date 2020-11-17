@@ -1,3 +1,7 @@
+## 1.3.2 - Nov 18, 2020
+
+-   Fix: `The method 'mapIndexed' is defined in multiple extensions for 'Set<dynamic>' and neither is more specific.` when using `collection: 1.15.0-nullsafety.5` package.
+
 ## 1.3.1 - Oct 6, 2020
 
 -   Add extension for `Iterable<Sink>` and `Iterable<StreamSubscription>`.

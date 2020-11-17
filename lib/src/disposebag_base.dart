@@ -1,7 +1,7 @@
-import 'dart:async';
+import 'dart:async' show Future, StreamSink, StreamSubscription;
 
-import 'package:collection/collection.dart';
-import 'package:meta/meta.dart';
+import 'package:collection/collection.dart' show UnmodifiableSetView;
+import 'package:meta/meta.dart' show visibleForTesting;
 
 /// Represents the result of disposing or clearing.
 enum BagResult {
@@ -206,7 +206,7 @@ class DisposeBag {
 
   /// Get all disposable
   @visibleForTesting
-  Set<dynamic> get disposables => UnmodifiableSetView(_resources);
+  Set<dynamic> get disposables => UnmodifiableSetView({..._resources});
 
   /// Adds a disposable to this container or disposes it if the container has been disposed.
   Future<bool> add(dynamic disposable) async {
