@@ -72,7 +72,6 @@ class DisposeBag {
     }
     if (disposable is Sink) {
       disposable.close();
-      return _nullFuture;
     }
     return _nullFuture;
   }
