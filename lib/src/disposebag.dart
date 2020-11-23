@@ -3,7 +3,7 @@ import 'dart:async' show Future, StreamSink, StreamSubscription;
 import 'package:collection/collection.dart' show UnmodifiableSetView;
 import 'package:meta/meta.dart' show visibleForTesting;
 
-import 'logger.dart' show BagResult, Logger, defaultLogger;
+import 'logger.dart' show BagResult, defaultLogger;
 
 enum _Operation { clear, dispose }
 
