@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:disposebag/src/disposebag_base.dart';
+import 'disposebag.dart';
 
 /// [disposedBy] extension method for [StreamSubscription]
 extension StreamSubscriptionDisposedByExtension<T> on StreamSubscription<T> {

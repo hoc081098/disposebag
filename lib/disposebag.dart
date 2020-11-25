@@ -18,5 +18,6 @@
 /// ```
 library disposebag;
 
-export 'src/disposebag_base.dart';
+export 'src/disposebag.dart';
 export 'src/extensions.dart';
+export 'src/logger.dart';
