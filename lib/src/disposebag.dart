@@ -3,15 +3,14 @@ import 'dart:async' show Future, StreamSink, StreamSubscription;
 import 'package:collection/collection.dart' show UnmodifiableSetView;
 import 'package:meta/meta.dart' show visibleForTesting;
 
-import 'logger.dart' show BagResult, defaultLogger;
+import 'logger.dart' show BagResult, Logger, defaultLogger;
 
 enum _Operation { clear, dispose }
 
 extension on _Operation {
-  // ignore: missing_return
   BagResult toResultWith({
-    Object error,
-    StackTrace stackTrace,
+    Object? error,
+    StackTrace? stackTrace,
   }) {
     if (error == null && stackTrace == null) {
       switch (this) {
@@ -49,15 +48,14 @@ class DisposeBag {
 
   /// Logger that logs disposed resources.
   /// Can be set to `null` to disable logging.
-  static var logger = defaultLogger;
+  static Logger? logger = defaultLogger;
 
   final _resources = <dynamic>{}; // <StreamSubscription | Sink>{}
   bool _isDisposed = false;
   bool _isDisposing = false;
 
   /// Construct a [DisposeBag] with [disposables] iterable
-  DisposeBag([Iterable<dynamic> disposables = const []])
-      : assert(disposables != null) {
+  DisposeBag([Iterable<dynamic> disposables = const []]) {
     _guardTypeMany(disposables);
     _resources.addAll(disposables);
   }
