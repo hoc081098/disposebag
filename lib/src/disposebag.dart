@@ -32,9 +32,8 @@ extension on _Operation {
 }
 
 void _guardType(dynamic disposable) {
-  if (disposable == null) {
-    throw ArgumentError.notNull('disposable');
-  }
+  ArgumentError.checkNotNull(disposable, 'disposable');
+
   if (!(disposable is StreamSubscription || disposable is Sink)) {
     throw ArgumentError.value(
         disposable, 'disposable', 'must be a StreamSubscription or a Sink');
@@ -48,7 +47,8 @@ void _guardTypeMany(Iterable<dynamic> disposable) =>
 class DisposeBag {
   static final _nullFuture = Future<void>.value(null);
 
-  /// Logger that logs disposed resources
+  /// Logger that logs disposed resources.
+  /// Can be set to `null` to disable logging.
   static var logger = defaultLogger;
 
   final _resources = <dynamic>{}; // <StreamSubscription | Sink>{}
