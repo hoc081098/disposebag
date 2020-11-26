@@ -11,13 +11,18 @@ Stream<int> _getPeriodicStream() =>
 const _maxCount = 5;
 
 class MockDisposeBag /*extends Mock*/ implements DisposeBag {
-  @override
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+  var _disposeCount = 0;
 
   @override
-  Future<bool> dispose() async {
-    return true;
+  dynamic noSuchMethod(Invocation invocation) {
+    if (invocation.memberName == #dispose) {
+      ++_disposeCount;
+      return Future.value(true);
+    }
+    return super.noSuchMethod(invocation);
   }
+
+  void verifyCalledDispose(int expected) => expect(_disposeCount, expected);
 }
 
 class MockSink /*extends Mock*/ implements Sink<int> {
