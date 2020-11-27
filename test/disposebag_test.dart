@@ -1,47 +1,14 @@
 import 'dart:async';
 
 import 'package:disposebag/disposebag.dart';
-
-// import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
+
+import 'mocks.dart';
 
 Stream<int> _getPeriodicStream() =>
     Stream.periodic(const Duration(milliseconds: 100), (i) => i).take(10);
 
 const _maxCount = 5;
-
-class MockDisposeBag /*extends Mock*/ implements DisposeBag {
-  var _disposeCount = 0;
-
-  @override
-  dynamic noSuchMethod(Invocation invocation) {
-    if (invocation.memberName == #dispose) {
-      ++_disposeCount;
-      return Future.value(true);
-    }
-    return super.noSuchMethod(invocation);
-  }
-
-  void verifyCalledDispose(int expected) => expect(_disposeCount, expected);
-}
-
-class MockSink /*extends Mock*/ implements Sink<int> {
-  @override
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-
-  @override
-  Future<void> close() async {}
-}
-
-class MockStreamSubscription /*extends Mock*/
-    implements
-        StreamSubscription<int> {
-  @override
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-
-  @override
-  Future<void> cancel() async {}
-}
 
 void main() {
   group('DisposeBag', () {
@@ -101,9 +68,9 @@ void main() {
         await bag.add(controller);
         await bag.dispose();
 
-        /*verify(sink.close()).called(1);*/ //TODO
+        expect(sink.call, const MethodCall('close'));
         expect(controller.isClosed, true);
-      }, skip: true);
+      });
 
       test('DisposeBag.add.sink.isDisposed', () async {
         final controller = StreamController<int>()..stream.listen(null);
@@ -376,26 +343,24 @@ void main() {
       final disposeBag = DisposeBag();
       final mockStreamSubscription = MockStreamSubscription();
 
-      /*when(mockStreamSubscription.cancel()).thenAnswer(
-        (realInvocation) async => throw Exception(),
-      );*/ //TODO
+      mockStreamSubscription.whenCancel =
+          () => Future.error(Exception());
 
       await disposeBag.add(mockStreamSubscription);
       expect(await disposeBag.dispose(), false);
       expect(disposeBag.isDisposed, false);
-    }, skip: true);
+    });
 
     test('DisposeBag.clear.failed', () async {
       final disposeBag = DisposeBag();
       final mockStreamSubscription = MockStreamSubscription();
 
-      /*when(mockStreamSubscription.cancel()).thenAnswer(
-        (realInvocation) async => throw Exception(),
-      );*/ //TODO
+      mockStreamSubscription.whenCancel =
+          () => Future.error(Exception());
 
       await disposeBag.add(mockStreamSubscription);
       expect(await disposeBag.clear(), false);
-    }, skip: true);
+    });
 
     test('issue #2', () async {
       final bag = DisposeBag();
@@ -420,21 +385,21 @@ void main() {
   });
 
   group('Extensions', () {
-    late DisposeBag bag;
+    late MockDisposeBag bag;
 
     setUp(() => bag = MockDisposeBag());
 
     test('StreamSubscription.disposedBy', () {
       final subscription = Stream.value(1).listen(null);
       subscription.disposedBy(bag);
-      /*verify(bag.add(subscription)).called(1);*/ //TODO
-    }, skip: true);
+      expect(bag.call, MethodCall('add', subscription));
+    });
 
     test('Sink.disposedBy', () {
       final controller = StreamController<void>();
       controller.disposedBy(bag);
-      /*verify(bag.add(controller)).called(1);*/ //TODO
-    }, skip: true);
+      expect(bag.call, MethodCall('add', controller));
+    });
 
     test('Iterable<StreamSubscription>.disposedBy', () {
       final subscription1 = Stream.value(1).listen(null);
@@ -443,8 +408,8 @@ void main() {
       final subscriptions = [subscription1, subscription2];
       subscriptions.disposedBy(bag);
 
-      /*verify(bag.addAll(subscriptions)).called(1);*/ //TODO
-    }, skip: true);
+      expect(bag.call, MethodCall('addAll', subscriptions));
+    });
 
     test('Iterable<Sink>.disposedBy', () {
       final controller1 = StreamController<void>();
@@ -453,7 +418,7 @@ void main() {
       final sinks = [controller1, controller2];
       sinks.disposedBy(bag);
 
-      /*verify(bag.addAll(sinks)).called(1);*/ //TODO
-    }, skip: true);
+      expect(bag.call, MethodCall('addAll', sinks));
+    });
   });
 }
