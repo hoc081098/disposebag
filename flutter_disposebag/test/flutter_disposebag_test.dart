@@ -10,14 +10,14 @@ const buttonKey = Key('button_key');
 class MyWidget extends StatefulWidget {
   final DisposeBag disposeBag;
 
-  MyWidget({this.disposeBag}) : super(key: key);
+  MyWidget({required this.disposeBag}) : super(key: key);
 
   @override
   _MyWidgetState createState() => _MyWidgetState();
 }
 
 class _MyWidgetState extends State<MyWidget> with DisposeBagMixin {
-  Future<bool> disposed;
+  late Future<bool> disposed;
 
   @override
   void initState() {
@@ -52,29 +52,31 @@ class _MyWidgetState extends State<MyWidget> with DisposeBagMixin {
 
 void main() {
   group('DisposeBagMixin', () {
-    DisposeBag disposeBag;
+    late DisposeBag disposeBag;
 
     setUp(() {
       disposeBag = DisposeBag();
     });
 
-    testWidgets('DisposeBagMixin.disposed', (tester) async {
-      final myWidget = MyWidget(disposeBag: disposeBag);
-      await tester.pumpWidget(myWidget);
+    testWidgets('DisposeBagMixin.disposed', (tester) {
+      return tester.runAsync(() async {
+        final myWidget = MyWidget(disposeBag: disposeBag);
+        await tester.pumpWidget(myWidget);
 
-      final disposed = key.currentState.disposed;
+        final disposed = key.currentState!.disposed;
 
-      final button = find.byKey(buttonKey);
-      expect(button, findsOneWidget);
+        final button = find.byKey(buttonKey);
+        expect(button, findsOneWidget);
 
-      await tester.tap(button);
-      await tester.pumpAndSettle();
-      expect(disposeBag.length, 2);
+        await tester.tap(button);
+        await tester.pumpAndSettle();
+        expect(disposeBag.length, 2);
 
-      await tester.pumpWidget(Container());
-      await tester.runAsync(() => disposed);
+        await tester.pumpWidget(Container());
+        await disposed;
 
-      expect(disposeBag.isDisposed, isTrue);
+        expect(disposeBag.isDisposed, isTrue);
+      });
     });
   });
 }
