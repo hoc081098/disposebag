@@ -19,6 +19,7 @@
 library disposebag;
 
 export 'src/disposebag.dart';
+export 'src/disposebag_base.dart';
 export 'src/exceptions.dart';
 export 'src/extensions.dart';
 export 'src/logger.dart';
