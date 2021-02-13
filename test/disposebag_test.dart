@@ -149,8 +149,8 @@ void main() {
         final controller = StreamController<int>()..stream.listen(null);
         final bag = DisposeBag([subscription, controller]);
 
-        expect(await bag.delete(subscription), isTrue);
-        expect(await bag.delete(controller), isTrue);
+        expect(bag.delete(subscription), isTrue);
+        expect(bag.delete(controller), isTrue);
 
         expect(controller.isClosed, isFalse);
         expect(bag.length, 0);
@@ -163,11 +163,12 @@ void main() {
         final bag = DisposeBag([subscription, controller]);
         await bag.dispose();
 
-        expect(bag.length, 0);
+        expect(() => bag.length, throwsA(isA<DisposedException>()));
         expect(controller.isClosed, isTrue);
 
-        expect(await bag.delete(subscription), isFalse);
-        expect(await bag.delete(controller), isFalse);
+        expect(
+            () => bag.delete(subscription), throwsA(isA<DisposedException>()));
+        expect(() => bag.delete(controller), throwsA(isA<DisposedException>()));
       });
     });
 
@@ -203,11 +204,11 @@ void main() {
         final bag = DisposeBag([subscription, controller]);
         await bag.dispose();
 
-        expect(bag.length, 0);
+        expect(() => bag.length, throwsA(isA<DisposedException>()));
         expect(controller.isClosed, isTrue);
 
-        expect(await bag.remove(subscription), isFalse);
-        expect(await bag.remove(controller), isFalse);
+        expect(bag.remove(subscription), throwsA(isA<DisposedException>()));
+        expect(bag.remove(controller), throwsA(isA<DisposedException>()));
       });
     });
 
@@ -267,20 +268,20 @@ void main() {
 
     group('DisposeBag.guardType', () {
       test('DisposeBag.add', () {
-        expect(() => DisposeBag().add(null), throwsArgumentError);
+        // expect(() => DisposeBag().add(null), throwsArgumentError);
         expect(() => DisposeBag().add(1), throwsArgumentError);
       });
 
       test('DisposeBag.addAll', () {
-        expect(
-          () => DisposeBag().addAll(
-            [
-              null,
-              Stream.value(1).listen(null),
-            ],
-          ),
-          throwsArgumentError,
-        );
+        // expect(
+        //   () => DisposeBag().addAll(
+        //     [
+        //       null,
+        //       Stream.value(1).listen(null),
+        //     ],
+        //   ),
+        //   throwsArgumentError,
+        // );
 
         expect(
           () => DisposeBag().addAll(
@@ -302,13 +303,13 @@ void main() {
           throwsArgumentError,
         );
 
-        expect(
-          () => DisposeBag([
-            null,
-            Stream.value(1).listen(null),
-          ]),
-          throwsArgumentError,
-        );
+        // expect(
+        //   () => DisposeBag([
+        //     null,
+        //     Stream.value(1).listen(null),
+        //   ]),
+        //   throwsArgumentError,
+        // );
       });
     });
 
@@ -319,8 +320,8 @@ void main() {
         Stream.value(2).listen((event) {}),
         Stream.value(3).listen((event) {}),
       ]);
-      expect(disposeBag.disposables.length, 3);
-      disposeBag.disposables.forEach(
+      expect(disposeBag.disposables!.length, 3);
+      disposeBag.disposables!.forEach(
         (s) => expect(
           s,
           const TypeMatcher<StreamSubscription<int>>(),
@@ -335,7 +336,7 @@ void main() {
         Stream.value(3).listen((event) {}),
       ]);
       await disposeBag.dispose();
-      expect(disposeBag.disposables.isEmpty, isTrue);
+      expect(disposeBag.disposables, isNull);
       expect(disposeBag.isDisposed, isTrue);
     });
 
@@ -343,11 +344,10 @@ void main() {
       final disposeBag = DisposeBag();
       final mockStreamSubscription = MockStreamSubscription();
 
-      mockStreamSubscription.whenCancel =
-          () => Future.error(Exception());
+      mockStreamSubscription.whenCancel = () => Future.error(Exception());
 
       await disposeBag.add(mockStreamSubscription);
-      expect(await disposeBag.dispose(), false);
+      expect(disposeBag.dispose(), throwsA(isException));
       expect(disposeBag.isDisposed, false);
     });
 
@@ -355,11 +355,10 @@ void main() {
       final disposeBag = DisposeBag();
       final mockStreamSubscription = MockStreamSubscription();
 
-      mockStreamSubscription.whenCancel =
-          () => Future.error(Exception());
+      mockStreamSubscription.whenCancel = () => Future.error(Exception());
 
       await disposeBag.add(mockStreamSubscription);
-      expect(await disposeBag.clear(), false);
+      expect(disposeBag.clear(), throwsA(isException));
     });
 
     test('issue #2', () async {

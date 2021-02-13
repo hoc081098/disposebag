@@ -1,8 +1,11 @@
 import 'dart:async' show Future, StreamSink, StreamSubscription;
 
-import 'package:collection/collection.dart' show UnmodifiableSetView;
+import 'package:collection/collection.dart'
+    show UnmodifiableSetView, IterableNullableExtension;
+import 'package:disposebag/src/disposebag_base.dart';
 import 'package:meta/meta.dart' show visibleForTesting;
 
+import 'exceptions.dart';
 import 'logger.dart' show BagResult, Logger, defaultLogger;
 
 enum _Operation { clear, dispose }
@@ -30,7 +33,7 @@ extension on _Operation {
   }
 }
 
-void _guardType(dynamic disposable) {
+void _guardType(Object disposable) {
   ArgumentError.checkNotNull(disposable, 'disposable');
 
   if (!(disposable is StreamSubscription || disposable is Sink)) {
@@ -39,29 +42,66 @@ void _guardType(dynamic disposable) {
   }
 }
 
-void _guardTypeMany(Iterable<dynamic> disposable) =>
+void _guardTypeMany(Iterable<Object> disposable) =>
     disposable.forEach(_guardType);
 
-/// Class that helps closing sinks and canceling stream subscriptions
-class DisposeBag {
-  static final _nullFuture = Future<void>.value(null);
+Future<void>? _wait(List<Future<void>> futures) {
+  if (futures.isEmpty) {
+    return null;
+  }
+  if (futures.length == 1) {
+    return futures[0];
+  }
+  return Future.wait(futures, eagerError: true);
+}
 
+/// Class that helps closing sinks and canceling stream subscriptions
+class DisposeBag implements DisposeBagBase {
   /// Logger that logs disposed resources.
   /// Can be set to `null` to disable logging.
   static Logger? logger = defaultLogger;
 
-  final _resources = <dynamic>{}; // <StreamSubscription | Sink>{}
-  bool _isDisposed = false;
-  bool _isDisposing = false;
+  final String? _tag;
+  Set<Object>? _resources; // <StreamSubscription | Sink>{}
+  bool _isClearing = false;
 
-  /// Construct a [DisposeBag] with [disposables] iterable
-  DisposeBag([Iterable<dynamic> disposables = const []]) {
+  /// Construct a [DisposeBag] with [disposables] iterable.
+  /// [disposables] must be an [Iterable] of [StreamSubscription]s or a [Sink]s.
+  ///
+  /// [tag] used for debugging purpose (eg. logger, toString, ...).
+  DisposeBag([
+    Iterable<Object> disposables = const <Object>[],
+    String? tag,
+  ]) : _tag = tag {
     _guardTypeMany(disposables);
-    _resources.addAll(disposables);
+    _resources = Set.of(disposables);
+  }
+
+  @override
+  String toString() => _tag != null
+      ? 'DisposeBag#$_tag'
+      : 'DisposeBag#${identityHashCode(this)}';
+
+  //
+  // Internal
+  //
+
+  Set<Object>? _validResourcesOrNull() =>
+      isDisposed || _isClearing ? null : _resources!;
+
+  /// Can throws
+  Set<Object> _validResourcesOrThrows() {
+    if (isDisposed) {
+      throw DisposedException(this);
+    }
+    if (_isClearing) {
+      throw ClearingException(this);
+    }
+    return _resources!;
   }
 
   /// Cancel [StreamSubscription] or close [Sink]
-  Future<dynamic> _disposeOne(dynamic disposable) {
+  static Future<dynamic>? _disposeOne(Object disposable) {
     if (disposable is StreamSubscription) {
       return disposable.cancel();
     }
@@ -71,119 +111,114 @@ class DisposeBag {
     if (disposable is Sink) {
       disposable.close();
     }
-    return _nullFuture;
+    return null;
   }
 
-  Future<void> _disposeByType<T>() {
-    final futures = [
-      for (final r in _resources)
-        if (r is T) _disposeOne(r)
-    ];
-
-    if (futures.isEmpty) {
-      return _nullFuture;
-    }
-    if (futures.length == 1) {
-      return futures[0];
-    }
-    return Future.wait(futures, eagerError: true);
+  static Future<void>? _disposeByType<T extends Object>(
+      Iterable<Object> resources) {
+    return _wait(resources
+        .whereType<T>()
+        .map(_disposeOne)
+        .whereNotNull()
+        .toList(growable: false));
   }
 
-  Future<bool> _clear(_Operation operation) async {
-    if (_isDisposed || _isDisposing) {
-      return false;
-    }
-    _isDisposing = true;
+  Future<void> _clear(_Operation operation) async {
+    final resources = _validResourcesOrThrows();
+    _isClearing = true;
 
     try {
-      await _disposeByType<StreamSubscription>();
-      await _disposeByType<Sink>();
+      await _disposeByType<StreamSubscription>(resources);
+      await _disposeByType<Sink>(resources);
 
       logger?.call(
+        this,
         operation.toResultWith(),
-        UnmodifiableSetView(_resources),
+        UnmodifiableSetView(resources),
       );
 
-      _resources.clear();
+      resources.clear();
       if (operation == _Operation.dispose) {
-        _isDisposed = true;
+        // mask as disposed
+        _resources = null;
       }
-
-      return true;
     } catch (e, s) {
       logger?.call(
+        this,
         operation.toResultWith(error: e, stackTrace: s),
-        UnmodifiableSetView(_resources),
+        UnmodifiableSetView(resources),
         e,
         s,
       );
-      return false;
+      rethrow;
     } finally {
-      _isDisposing = false;
+      _isClearing = false;
     }
   }
 
-  /// Returns true if this resource has been disposed.
-  bool get isDisposed => _isDisposed;
+  //
+  // Public
+  //
 
-  /// Returns the number of currently held Disposables.
-  int get length => _resources.length;
+  @override
+  bool get isDisposed => _resources == null;
 
-  /// Get all disposable
+  @override
+  bool get isClearing => _isClearing;
+
+  @override
+  int get length => _validResourcesOrThrows().length;
+
+  @override
   @visibleForTesting
-  Set<dynamic> get disposables => UnmodifiableSetView({..._resources});
+  Set<Object>? get disposables {
+    final r = _validResourcesOrNull();
+    return r != null ? Set.unmodifiable(r) : null;
+  }
 
-  /// Adds a disposable to this container or disposes it if the container has been disposed.
-  Future<bool> add(dynamic disposable) async {
+  @override
+  Future<bool> add(Object disposable) async {
     _guardType(disposable);
 
-    if (_isDisposed || _isDisposing) {
+    final resources = _validResourcesOrNull();
+    if (resources == null) {
       await _disposeOne(disposable);
       return false;
     }
-
-    return _resources.add(disposable);
+    return resources.add(disposable);
   }
 
-  /// Atomically adds the given array of Disposables to the container or disposes them all if the container has been disposed.
-  Future<bool> addAll(Iterable<dynamic> disposables) async {
+  @override
+  Future<void> addAll(Iterable<Object> disposables) async {
     _guardTypeMany(disposables);
 
-    if (_isDisposed || _isDisposing) {
-      await Future.wait(disposables.map(_disposeOne));
-      return false;
+    final resources = _validResourcesOrNull();
+    if (resources == null) {
+      await _disposeByType<StreamSubscription>(disposables);
+      return _disposeByType<Sink>(disposables);
     }
-
-    _resources.addAll(disposables);
-    return true;
+    resources.addAll(disposables);
   }
 
-  /// Removes and disposes the given disposable if it is part of this container.
-  Future<bool> remove(dynamic disposable) async {
-    _guardType(disposable);
-
-    if (await delete(disposable)) {
+  @override
+  Future<bool> remove(Object disposable) async {
+    final removed = delete(disposable);
+    if (removed) {
       await _disposeOne(disposable);
-      return true;
     }
-
-    return false;
+    return removed;
   }
 
-  /// Removes (but does not dispose) the given disposable if it is part of this container.
-  Future<bool> delete(dynamic disposable) async {
+  @override
+  bool delete(Object disposable) {
     _guardType(disposable);
 
-    if (_isDisposed || _isDisposing) {
-      return false;
-    }
-
-    return _resources.remove(disposable);
+    return _validResourcesOrThrows().remove(disposable);
   }
 
-  /// Atomically clears the container, then disposes all the previously contained Disposables.
-  Future<bool> clear() => _clear(_Operation.clear);
+  @override
+  Future<void> clear() => _clear(_Operation.clear);
 
-  /// Dispose the resource, the operation should be idempotent.
-  Future<bool> dispose() => _clear(_Operation.dispose);
+  @override
+  Future<void> dispose() => _clear(_Operation.dispose);
 }

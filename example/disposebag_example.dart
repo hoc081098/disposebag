@@ -1,9 +1,8 @@
 import 'dart:async';
 
 import 'package:disposebag/disposebag.dart';
-import 'package:pedantic/pedantic.dart';
 
-List<dynamic> get _disposables {
+List<Object> get _disposables {
   final controllers = <StreamController>[
     StreamController<int>()..add(1)..add(2),
     StreamController<int>(sync: true)..add(3)..add(4),
@@ -38,9 +37,9 @@ void main() async {
 
   // await before clearing
   await Future.delayed(const Duration(seconds: 1));
-  unawaited(bag.clear());
-  unawaited(bag.clear());
-  unawaited(bag.clear());
+  await bag.clear();
+  await bag.clear();
+  await bag.clear();
 
   // adding after clearing
   await Future.delayed(const Duration(seconds: 1));
@@ -52,4 +51,5 @@ void main() async {
   await Future.delayed(const Duration(seconds: 2));
   await bag.dispose();
   print("Bag disposed: ${bag.isDisposed}. It's all good");
+  await Future.delayed(const Duration(seconds: 2));
 }
