@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:disposebag/src/disposebag.dart';
 
 /// Represents the result of disposing or clearing.
@@ -48,12 +49,3 @@ final Logger defaultLogger = (bag, result, resources, [error, stackTrace]) {
 
   print(resources.mapIndexed((i, e) => '   $i → $e').join('\n'));
 };
-
-extension _IterableExtensions<T> on Iterable<T> {
-  Iterable<R> mapIndexed<R>(R Function(int, T) mapper) sync* {
-    var index = 0;
-    for (final item in this) {
-      yield mapper(index++, item);
-    }
-  }
-}
