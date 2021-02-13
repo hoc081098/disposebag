@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart' show IterableExtension;
-import 'package:disposebag/src/disposebag.dart';
+
+import 'disposebag.dart';
 
 /// Represents the result of disposing or clearing.
 enum BagResult {

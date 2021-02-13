@@ -2,9 +2,9 @@ import 'dart:async' show Future, StreamSink, StreamSubscription;
 
 import 'package:collection/collection.dart'
     show UnmodifiableSetView, IterableNullableExtension;
-import 'package:disposebag/src/disposebag_base.dart';
 import 'package:meta/meta.dart' show visibleForTesting;
 
+import 'disposebag_base.dart';
 import 'exceptions.dart';
 import 'logger.dart' show BagResult, Logger, defaultLogger;
 
