@@ -163,7 +163,7 @@ void main() {
         final bag = DisposeBag([subscription, controller]);
         await bag.dispose();
 
-        expect(() => bag.length, throwsA(isA<DisposedException>()));
+        expect(bag.length, 0);
         expect(controller.isClosed, isTrue);
 
         expect(
@@ -204,7 +204,7 @@ void main() {
         final bag = DisposeBag([subscription, controller]);
         await bag.dispose();
 
-        expect(() => bag.length, throwsA(isA<DisposedException>()));
+        expect(bag.length, 0);
         expect(controller.isClosed, isTrue);
 
         expect(bag.remove(subscription), throwsA(isA<DisposedException>()));
@@ -320,8 +320,8 @@ void main() {
         Stream.value(2).listen((event) {}),
         Stream.value(3).listen((event) {}),
       ]);
-      expect(disposeBag.disposables!.length, 3);
-      disposeBag.disposables!.forEach(
+      expect(disposeBag.disposables.length, 3);
+      disposeBag.disposables.forEach(
         (s) => expect(
           s,
           const TypeMatcher<StreamSubscription<int>>(),
@@ -336,7 +336,7 @@ void main() {
         Stream.value(3).listen((event) {}),
       ]);
       await disposeBag.dispose();
-      expect(disposeBag.disposables, isNull);
+      expect(disposeBag.disposables, isEmpty);
       expect(disposeBag.isDisposed, isTrue);
     });
 

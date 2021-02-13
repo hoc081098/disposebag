@@ -167,14 +167,12 @@ class DisposeBag implements DisposeBagBase {
   bool get isClearing => _isClearing;
 
   @override
-  int get length => _validResourcesOrThrows().length;
+  int get length => _validResourcesOrNull()?.length ?? 0;
 
   @override
   @visibleForTesting
-  Set<Object>? get disposables {
-    final r = _validResourcesOrNull();
-    return r != null ? Set.unmodifiable(r) : null;
-  }
+  Set<Object> get disposables =>
+      Set.unmodifiable(_validResourcesOrNull() ?? const <Object>{});
 
   @override
   Future<bool> add(Object disposable) async {

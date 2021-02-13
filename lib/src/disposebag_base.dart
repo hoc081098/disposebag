@@ -4,6 +4,10 @@ import 'exceptions.dart';
 
 /// DisposeBag base interface.
 abstract class DisposeBagBase {
+  //
+  // State of bag.
+  //
+
   /// Returns true if this bag has been disposed.
   bool get isDisposed;
 
@@ -11,12 +15,16 @@ abstract class DisposeBagBase {
   bool get isClearing;
 
   /// Returns the number of currently held Disposables.
-  /// Throws [DisposedException] or [ClearingException] if this bag has been disposed or is disposing.
+  /// Return `0` if this bag has been disposed or is disposing.
   int get length;
 
-  /// Gets all disposable or `null` if this bag has been disposed or is disposing.
+  /// Gets all disposable or empty set if this bag has been disposed or is disposing.
   @visibleForTesting
-  Set<Object>? get disposables;
+  Set<Object> get disposables;
+
+  //
+  // Add methods.
+  //
 
   /// Adds a disposable to this container or disposes it if this bag has been disposed or is disposing.
   ///
@@ -30,6 +38,10 @@ abstract class DisposeBagBase {
   ///
   /// [disposables] must be an [Iterable] of [StreamSubscription]s or a [Sink]s.
   Future<void> addAll(Iterable<Object> disposables);
+
+  //
+  // Remove methods.
+  //
 
   /// Removes and **disposes** the given disposable if it is part of this container.
   ///
@@ -51,6 +63,10 @@ abstract class DisposeBagBase {
   ///
   /// Throws [DisposedException] or [ClearingException] if this bag has been disposed or is disposing.
   bool delete(Object disposable);
+
+  //
+  // Clear and dispose.
+  //
 
   /// Atomically clears the container, then disposes all the previously contained Disposables.
   /// This method can be called multiple times.
