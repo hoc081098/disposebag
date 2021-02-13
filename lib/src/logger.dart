@@ -18,8 +18,8 @@ enum BagResult {
 typedef Logger = void Function(
   BagResult result,
   Set<dynamic> resources, [
-  Object error,
-  StackTrace stackTrace,
+  Object? error,
+  StackTrace? stackTrace,
 ]);
 
 /// Default `DisposeBag` logger

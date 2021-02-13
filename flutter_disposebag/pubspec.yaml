@@ -1,17 +1,17 @@
 name: flutter_disposebag
 description: Automatically disposes StreamSubscription and closes Sink when disposing State<T>.
-version: 1.0.0
+version: 1.1.0-nullsafety.0
 author: Petrus Nguyễn Thái Học <hoc081098@gmail.com>
 homepage: https://github.com/hoc081098/disposebag/tree/master/flutter_disposebag
 repository: https://github.com/hoc081098/disposebag/tree/master/flutter_disposebag
 issue_tracker: https://github.com/hoc081098/disposebag/issues
 
 environment:
-  sdk: '>=2.7.0 <3.0.0'
+  sdk: '>=2.12.0-0 <3.0.0'
 
 dependencies:
   meta: ^1.1.6
-  disposebag: '>=1.0.0 <2.0.0'
+  disposebag: ^1.5.0-nullsafety.0
   flutter:
     sdk: flutter
 

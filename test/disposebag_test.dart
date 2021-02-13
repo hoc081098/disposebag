@@ -1,19 +1,14 @@
 import 'dart:async';
 
 import 'package:disposebag/disposebag.dart';
-import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
+
+import 'mocks.dart';
 
 Stream<int> _getPeriodicStream() =>
     Stream.periodic(const Duration(milliseconds: 100), (i) => i).take(10);
 
 const _maxCount = 5;
-
-class MockDisposeBag extends Mock implements DisposeBag {}
-
-class MockSink extends Mock implements Sink<int> {}
-
-class MockStreamSubscription extends Mock implements StreamSubscription<int> {}
 
 void main() {
   group('DisposeBag', () {
@@ -48,7 +43,7 @@ void main() {
         await bag.dispose();
 
         var count = 0;
-        StreamSubscription subscription;
+        late StreamSubscription subscription;
         subscription = stream.asyncMap(
           (_) async {
             ++count;
@@ -73,7 +68,7 @@ void main() {
         await bag.add(controller);
         await bag.dispose();
 
-        verify(sink.close()).called(1);
+        expect(sink.call, const MethodCall('close'));
         expect(controller.isClosed, true);
       });
 
@@ -97,7 +92,7 @@ void main() {
         await bag.dispose();
 
         var count = 0;
-        StreamSubscription subscription;
+        late StreamSubscription subscription;
         subscription = stream.asyncMap(
           (_) async {
             ++count;
@@ -186,7 +181,7 @@ void main() {
         expect(controller.isClosed, isTrue);
 
         var count = 0;
-        StreamSubscription subscription;
+        late StreamSubscription subscription;
         subscription = stream.asyncMap((_) async {
           ++count;
           if (count == _maxCount) {
@@ -348,9 +343,8 @@ void main() {
       final disposeBag = DisposeBag();
       final mockStreamSubscription = MockStreamSubscription();
 
-      when(mockStreamSubscription.cancel()).thenAnswer(
-        (realInvocation) async => throw Exception(),
-      );
+      mockStreamSubscription.whenCancel =
+          () => Future.error(Exception());
 
       await disposeBag.add(mockStreamSubscription);
       expect(await disposeBag.dispose(), false);
@@ -361,9 +355,8 @@ void main() {
       final disposeBag = DisposeBag();
       final mockStreamSubscription = MockStreamSubscription();
 
-      when(mockStreamSubscription.cancel()).thenAnswer(
-        (realInvocation) async => throw Exception(),
-      );
+      mockStreamSubscription.whenCancel =
+          () => Future.error(Exception());
 
       await disposeBag.add(mockStreamSubscription);
       expect(await disposeBag.clear(), false);
@@ -392,20 +385,20 @@ void main() {
   });
 
   group('Extensions', () {
-    DisposeBag bag;
+    late MockDisposeBag bag;
 
     setUp(() => bag = MockDisposeBag());
 
     test('StreamSubscription.disposedBy', () {
       final subscription = Stream.value(1).listen(null);
       subscription.disposedBy(bag);
-      verify(bag.add(subscription)).called(1);
+      expect(bag.call, MethodCall('add', subscription));
     });
 
     test('Sink.disposedBy', () {
       final controller = StreamController<void>();
       controller.disposedBy(bag);
-      verify(bag.add(controller)).called(1);
+      expect(bag.call, MethodCall('add', controller));
     });
 
     test('Iterable<StreamSubscription>.disposedBy', () {
@@ -415,7 +408,7 @@ void main() {
       final subscriptions = [subscription1, subscription2];
       subscriptions.disposedBy(bag);
 
-      verify(bag.addAll(subscriptions)).called(1);
+      expect(bag.call, MethodCall('addAll', subscriptions));
     });
 
     test('Iterable<Sink>.disposedBy', () {
@@ -425,7 +418,7 @@ void main() {
       final sinks = [controller1, controller2];
       sinks.disposedBy(bag);
 
-      verify(bag.addAll(sinks)).called(1);
+      expect(bag.call, MethodCall('addAll', sinks));
     });
   });
 }
