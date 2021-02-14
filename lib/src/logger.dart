@@ -28,7 +28,8 @@ typedef Logger = void Function(
 ]);
 
 /// Default `DisposeBag` logger
-final Logger defaultLogger = (bag, result, resources, [error, stackTrace]) {
+final Logger disposeBagDefaultLogger =
+    (bag, result, resources, [error, stackTrace]) {
   switch (result) {
     case BagResult.disposedSuccess:
       print(' ↓ Disposed successfully → $bag: ');

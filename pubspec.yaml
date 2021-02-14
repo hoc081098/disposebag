@@ -1,6 +1,6 @@
 name: disposebag
 description: A package to help disposing Streams and closing Sinks easily.
-version: 1.5.0-nullsafety.0
+version: 1.5.0-nullsafety.1
 homepage: https://github.com/hoc081098/disposebag.git
 repository: https://github.com/hoc081098/disposebag.git
 issue_tracker: https://github.com/hoc081098/disposebag/issues

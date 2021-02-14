@@ -2,11 +2,12 @@ import 'dart:async' show Future, StreamSink, StreamSubscription;
 
 import 'package:collection/collection.dart'
     show UnmodifiableSetView, IterableNullableExtension;
+import 'package:disposebag/disposebag.dart';
 import 'package:meta/meta.dart' show visibleForTesting;
 
 import 'disposebag_base.dart';
 import 'exceptions.dart';
-import 'logger.dart' show BagResult, Logger, defaultLogger;
+import 'logger.dart';
 
 enum _Operation { clear, dispose }
 
@@ -72,10 +73,6 @@ Iterable<E> _evaluateIterable<E>(Iterable<E> iterable) {
 
 /// Class that helps closing sinks and canceling stream subscriptions
 class DisposeBag implements DisposeBagBase {
-  /// Logger that logs disposed resources.
-  /// Can be set to `null` to disable logging.
-  static Logger? logger = defaultLogger;
-
   final String? _tag;
   Set<Object>? _resources; // <StreamSubscription | Sink>{}
   bool _isClearing = false;
@@ -146,7 +143,7 @@ class DisposeBag implements DisposeBagBase {
       await _disposeByType<StreamSubscription>(resources);
       await _disposeByType<Sink>(resources);
 
-      logger?.call(
+      DisposeBagConfigs.logger?.call(
         this,
         operation.toResultWith(),
         UnmodifiableSetView(resources),
@@ -158,7 +155,7 @@ class DisposeBag implements DisposeBagBase {
         _resources = null;
       }
     } catch (e, s) {
-      logger?.call(
+      DisposeBagConfigs.logger?.call(
         this,
         operation.toResultWith(error: e, stackTrace: s),
         UnmodifiableSetView(resources),
