@@ -140,8 +140,10 @@ class DisposeBag implements DisposeBagBase {
     _isClearing = true;
 
     try {
-      await _disposeByType<StreamSubscription>(resources);
-      await _disposeByType<Sink>(resources);
+      if (resources.isNotEmpty) {
+        await _disposeByType<StreamSubscription>(resources);
+        await _disposeByType<Sink>(resources);
+      }
 
       DisposeBagConfigs.logger?.call(
         this,
