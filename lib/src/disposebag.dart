@@ -203,6 +203,9 @@ class DisposeBag implements DisposeBagBase {
   @override
   Future<void> addAll(Iterable<Object> disposables) async {
     disposables = _evaluateIterable(disposables);
+    if (disposables.isEmpty) {
+      return;
+    }
     _guardTypeMany(disposables);
 
     final resources = _validResourcesOrNull();
