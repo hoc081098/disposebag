@@ -9,7 +9,7 @@ class DisposedException implements Exception {
   DisposedException(this.bag);
 
   @override
-  String toString() => '$bag was disposed, try to use new instance instead';
+  String toString() => '$bag was disposed, try to use new instance instead.';
 }
 
 /// Bag is clearing.
@@ -21,5 +21,5 @@ class ClearingException implements Exception {
   ClearingException(this.bag);
 
   @override
-  String toString() => '$bag is clearing, try to await it done';
+  String toString() => '$bag is clearing, try to await for completion.';
 }
