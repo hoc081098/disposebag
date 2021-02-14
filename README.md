@@ -11,7 +11,7 @@
 [![GitHub](https://img.shields.io/github/license/hoc081098/disposebag?color=4EB1BA)](https://opensource.org/licenses/MIT)
 [![Style](https://img.shields.io/badge/style-pedantic-40c4ff.svg)](https://github.com/dart-lang/pedantic)
 
-A package to help disposing Streams and closing Sinks
+A package helps to cancel StreamSubscriptions and close Sinks.
 
 ## Usage
 
@@ -24,7 +24,7 @@ import 'dart:async';
 main() async {
   final controllers = <StreamController>[];
   final subscriptions = <StreamSubscription>[];
- 
+
   final bag = DisposeBag([...subscriptions, ...controllers]);
 
   await Stream.value(3).listen(null).disposedBy(bag);
