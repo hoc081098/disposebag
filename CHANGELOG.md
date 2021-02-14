@@ -1,3 +1,14 @@
+## 1.5.0-nullsafety.1 - Feb 14, 2021
+
+-   **Breaking**:
+    -   changes logger: `DisposeBagConfigs.logger = ...;` (previous `DisposeBag.logger = ...;`).
+    -   changes signature of `Logger`.
+    -   rename `defaultLogger` to `disposeBagDefaultLogger`.
+    -   now, `DisposeBag.clear`, `DisposeBag.dispose` and `DisposeBag.addAll` return a `Future<void>` instead of a `Future<bool>`.
+    -   `DisposeBag.delete` returns a `bool` instead of a `Future<bool>`.
+-   Add debug tag to `DisposeBag` via constructor `DisposeBag([],  'tag');`.
+-   More docs.
+
 ## 1.5.0-nullsafety.0 - Dec 11, 2020
 
 -   Migrate this package to null safety.
