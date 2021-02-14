@@ -207,8 +207,12 @@ void main() {
         expect(bag.length, 0);
         expect(controller.isClosed, isTrue);
 
-        expect(bag.remove(subscription), throwsA(isA<DisposedException>()));
-        expect(bag.remove(controller), throwsA(isA<DisposedException>()));
+        final throwsDisposedException = throwsA(
+          isA<DisposedException>().having((e) => e.toString(), 'toString',
+              '$bag was disposed, try to use new instance instead.'),
+        );
+        expect(bag.remove(subscription), throwsDisposedException);
+        expect(bag.remove(controller), throwsDisposedException);
       });
     });
 
@@ -275,7 +279,13 @@ void main() {
         disposeBag.clear();
         expect(disposeBag.isClearing, isTrue);
 
-        expect(disposeBag.clear(), throwsA(isA<ClearingException>()));
+        expect(
+          disposeBag.clear(),
+          throwsA(isA<ClearingException>().having(
+              (e) => e.toString(),
+              'toString',
+              '$disposeBag is clearing, try to await for completion.')),
+        );
       });
     });
 
