@@ -55,6 +55,21 @@ Future<void>? _wait(List<Future<void>> futures) {
   return Future.wait(futures, eagerError: true);
 }
 
+/// Returns a 5 character long hexadecimal string generated from
+/// [Object.hashCode]'s 20 least-significant bits.
+String _shortHash(Object? object) =>
+    object.hashCode.toUnsigned(20).toRadixString(16).padLeft(5, '0');
+
+/// Evaluates a lazy iterable.
+///
+/// Known non-lazy types are returned directly instead.
+Iterable<E> _evaluateIterable<E>(Iterable<E> iterable) {
+  if (iterable is! List && iterable is! Set) {
+    iterable = iterable.toList(growable: false);
+  }
+  return iterable;
+}
+
 /// Class that helps closing sinks and canceling stream subscriptions
 class DisposeBag implements DisposeBagBase {
   /// Logger that logs disposed resources.
@@ -73,14 +88,14 @@ class DisposeBag implements DisposeBagBase {
     Iterable<Object> disposables = const <Object>[],
     String? tag,
   ]) : _tag = tag {
+    disposables = _evaluateIterable(disposables);
     _guardTypeMany(disposables);
     _resources = Set.of(disposables);
   }
 
   @override
-  String toString() => _tag != null
-      ? 'DisposeBag#$_tag'
-      : 'DisposeBag#${identityHashCode(this)}';
+  String toString() =>
+      'DisposeBag${_tag == null ? '' : '#$_tag'}#${_shortHash(this)}';
 
   //
   // Internal
@@ -188,6 +203,7 @@ class DisposeBag implements DisposeBagBase {
 
   @override
   Future<void> addAll(Iterable<Object> disposables) async {
+    disposables = _evaluateIterable(disposables);
     _guardTypeMany(disposables);
 
     final resources = _validResourcesOrNull();
