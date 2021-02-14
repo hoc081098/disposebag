@@ -1,3 +1,7 @@
+import 'package:collection/collection.dart' show IterableExtension;
+
+import 'disposebag.dart';
+
 /// Represents the result of disposing or clearing.
 enum BagResult {
   /// Disposed successfully.
@@ -16,6 +20,7 @@ enum BagResult {
 /// Logs the result of disposing or clearing.
 /// By default, prints the result to the console.
 typedef Logger = void Function(
+  DisposeBag bag,
   BagResult result,
   Set<dynamic> resources, [
   Object? error,
@@ -23,21 +28,22 @@ typedef Logger = void Function(
 ]);
 
 /// Default `DisposeBag` logger
-final Logger defaultLogger = (result, resources, [error, stackTrace]) {
+final Logger disposeBagDefaultLogger =
+    (bag, result, resources, [error, stackTrace]) {
   switch (result) {
     case BagResult.disposedSuccess:
-      print(' ↓ Disposed successfully: ');
+      print(' ↓ Disposed successfully → $bag: ');
       break;
     case BagResult.clearedSuccess:
-      print(' ↓ Cleared successfully: ');
+      print(' ↓ Cleared successfully → $bag: ');
       break;
     case BagResult.disposedFailure:
-      print(' ↓ Disposed unsuccessfully: ');
+      print(' ↓ Disposed unsuccessfully → $bag: ');
       print('    → Error: $error');
       print('    → StackTrace: $stackTrace');
       break;
     case BagResult.clearedFailure:
-      print(' ↓ Cleared unsuccessfully: ');
+      print(' ↓ Cleared unsuccessfully → $bag: ');
       print('    → Error: $error');
       print('    → StackTrace: $stackTrace');
       break;
@@ -45,12 +51,3 @@ final Logger defaultLogger = (result, resources, [error, stackTrace]) {
 
   print(resources.mapIndexed((i, e) => '   $i → $e').join('\n'));
 };
-
-extension _IterableExtensions<T> on Iterable<T> {
-  Iterable<R> mapIndexed<R>(R Function(int, T) mapper) sync* {
-    var index = 0;
-    for (final item in this) {
-      yield mapper(index++, item);
-    }
-  }
-}
