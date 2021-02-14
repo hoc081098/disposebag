@@ -264,6 +264,19 @@ void main() {
         await completer2.future;
         expect(controller2.isClosed, isTrue);
       });
+
+      test('DisposeBag.clear.isClearing', () {
+        final disposeBag = DisposeBag([
+          Stream.value(1).listen(null),
+          Stream.value(2).listen(null),
+        ]);
+
+        expect(disposeBag.isClearing, isFalse);
+        disposeBag.clear();
+        expect(disposeBag.isClearing, isTrue);
+
+        expect(disposeBag.clear(), throwsA(isA<ClearingException>()));
+      });
     });
 
     group('DisposeBag.guardType', () {
