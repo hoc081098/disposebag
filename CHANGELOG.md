@@ -1,3 +1,7 @@
+## 1.5.0 - Mar 21, 2021
+
+-   Stable release for null safety.
+
 ## 1.5.0-nullsafety.1 - Feb 14, 2021
 
 -   **Breaking**:
