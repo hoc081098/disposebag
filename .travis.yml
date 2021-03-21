@@ -3,7 +3,7 @@ dart:
   - dev
   - beta
 script:
-  - dartanalyzer --fatal-infos --fatal-warnings lib
+  - dart analyze --fatal-infos --fatal-warnings
   - dartfmt -n ./lib --set-exit-if-changed
   - pub get
   - pub global activate coverage

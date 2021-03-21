@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image:  google/dart:2.12
+      image: google/dart:2.12
 
     steps:
       - uses: actions/checkout@v2
@@ -20,11 +20,8 @@ jobs:
       - name: Install dependencies
         run: pub get
 
-      - name: Analyze lib
-        run: dartanalyzer --fatal-infos --fatal-warnings lib
-
-      - name: Analyze test
-        run: dartanalyzer --fatal-infos --fatal-warnings test
+      - name: Analyze
+        run: dart analyze --fatal-infos --fatal-warnings
 
       - name: Format code
         run: dartfmt -n ./lib ./test --set-exit-if-changed
