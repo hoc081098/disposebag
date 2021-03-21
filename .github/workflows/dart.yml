@@ -12,11 +12,36 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image:  google/dart:beta
+      image:  google/dart:2.12
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Install dependencies
-      run: pub get
-    - name: Run tests
-      run: pub run test
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: pub get
+
+      - name: Analyze lib
+        run: dartanalyzer --fatal-infos --fatal-warnings lib
+
+      - name: Analyze test
+        run: dartanalyzer --fatal-infos --fatal-warnings test
+
+      - name: Format code
+        run: dartfmt -n ./lib ./test --set-exit-if-changed
+
+      - name: Active coverage
+        run: pub global activate coverage
+
+      - name: Run tests
+        run: pub run test/disposebag_test.dart
+
+      - name: Start Observatory
+        run: dart --disable-service-auth-codes --enable-vm-service=8111 --pause-isolates-on-exit test/disposebag_test.dart &
+
+      - name: Collect coverage
+        run: nohup pub global run coverage:collect_coverage --port=8111 --out=coverage.json --wait-paused --resume-isolates
+
+      - name: Format coverage
+        run: pub global run coverage:format_coverage --lcov --in=coverage.json --out=lcov.info --packages=.packages --report-on=lib
+
+      - uses: codecov/codecov-action@v1
