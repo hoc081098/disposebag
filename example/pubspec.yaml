@@ -1,0 +1,14 @@
+name: disposebag_example
+description: disposebag_example
+publish_to: none
+version: 1.5.0
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  disposebag: any
+
+dependency_overrides:
+  disposebag:
+    path: ../../disposebag
