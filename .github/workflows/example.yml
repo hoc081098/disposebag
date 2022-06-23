@@ -29,5 +29,5 @@ jobs:
       - name: Install dependencies
         run: dart pub get
 
-      - name: Run example/lib/disposebag_example.dart
-        run: dart run example/lib/disposebag_example.dart
+      - name: Run lib/disposebag_example.dart
+        run: dart run lib/disposebag_example.dart
