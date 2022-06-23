@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:disposebag/disposebag.dart';
 
 List<Object> get _disposables {
-  final controllers = <StreamController>[
+  final controllers = <StreamController<Object>>[
     StreamController<int>()
       ..add(1)
       ..add(2),
@@ -29,13 +29,14 @@ List<Object> get _disposables {
 }
 
 void main() async {
+  DisposeBagConfigs.logger = disposeBagDefaultLogger;
   final bag = DisposeBag(_disposables);
 
   // add & addAll
   await bag.add(Stream.value(1).listen(null));
   await bag.addAll([
     Stream.value(2).listen(null),
-    Stream.periodic(const Duration(seconds: 1)).listen(null),
+    Stream<void>.periodic(const Duration(seconds: 1)).listen(null),
   ]);
 
   // disposedBy
@@ -44,20 +45,20 @@ void main() async {
   await StreamController<int>.broadcast(sync: true).disposedBy(bag);
 
   // await before clearing
-  await Future.delayed(const Duration(seconds: 1));
+  await Future<void>.delayed(const Duration(seconds: 1));
   await bag.clear();
   await bag.clear();
   await bag.clear();
 
   // adding after clearing
-  await Future.delayed(const Duration(seconds: 1));
+  await Future<void>.delayed(const Duration(seconds: 1));
   await Stream.periodic(const Duration(milliseconds: 100), (i) => i)
       .listen(print)
       .disposedBy(bag);
 
   // await before disposing
-  await Future.delayed(const Duration(seconds: 2));
+  await Future<void>.delayed(const Duration(seconds: 2));
   await bag.dispose();
   print("Bag disposed: ${bag.isDisposed}. It's all good");
-  await Future.delayed(const Duration(seconds: 2));
+  await Future<void>.delayed(const Duration(seconds: 2));
 }

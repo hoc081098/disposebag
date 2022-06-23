@@ -145,7 +145,7 @@ void main() {
 
     group('DisposeBag.delete', () {
       test('DisposeBag.delete', () async {
-        final subscription = Stream.empty().listen(null);
+        final subscription = Stream<Never>.empty().listen(null);
         final controller = StreamController<int>()..stream.listen(null);
         final bag = DisposeBag([subscription, controller]);
 
@@ -157,7 +157,7 @@ void main() {
       });
 
       test('DisposeBag.delete.isDisposed', () async {
-        final subscription = Stream.empty().listen(null);
+        final subscription = Stream<Never>.empty().listen(null);
         final controller = StreamController<int>()..stream.listen(null);
 
         final bag = DisposeBag([subscription, controller]);
@@ -198,7 +198,7 @@ void main() {
       });
 
       test('DisposeBag.remove.isDisposed', () async {
-        final subscription = Stream.empty().listen(null);
+        final subscription = Stream<Never>.empty().listen(null);
         final controller = StreamController<int>()..stream.listen(null);
 
         final bag = DisposeBag([subscription, controller]);
@@ -344,12 +344,12 @@ void main() {
         Stream.value(3).listen((event) {}),
       ]);
       expect(disposeBag.disposables.length, 3);
-      disposeBag.disposables.forEach(
-        (s) => expect(
+      for (final s in disposeBag.disposables) {
+        expect(
           s,
           const TypeMatcher<StreamSubscription<int>>(),
-        ),
-      );
+        );
+      }
     });
 
     test('DisposeBag.isDisposed', () async {

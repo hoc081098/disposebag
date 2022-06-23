@@ -11,6 +11,9 @@
       <excludeFolder url="file://$MODULE_DIR$/flutter_disposebag/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/flutter_disposebag/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/flutter_disposebag/build" />
+      <excludeFolder url="file://$MODULE_DIR$/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/example/.pub" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Dart SDK" level="project" />
