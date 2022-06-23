@@ -2,7 +2,7 @@
 
 ## Author: [Petrus Nguyễn Thái Học](https://github.com/hoc081098)
 
-![Dart CI](https://github.com/hoc081098/disposebag/workflows/Dart%20CI/badge.svg)
+[![Dart CI](https://github.com/hoc081098/disposebag/actions/workflows/dart.yml/badge.svg)](https://github.com/hoc081098/disposebag/actions/workflows/dart.yml)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/335930f9b71d4564b5523ccc788663f9)](https://app.codacy.com/manual/hoc081098/disposebag?utm_source=github.com&utm_medium=referral&utm_content=hoc081098/disposebag&utm_campaign=Badge_Grade_Dashboard)
 [![Pub](https://img.shields.io/pub/v/disposebag)](https://pub.dev/packages/disposebag)
 [![Pub](https://img.shields.io/pub/v/disposebag?include_prereleases)](https://pub.dev/packages/disposebag)
