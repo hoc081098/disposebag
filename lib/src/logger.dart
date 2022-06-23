@@ -22,12 +22,13 @@ enum BagResult {
 typedef Logger = void Function(
   DisposeBag bag,
   BagResult result,
-  Set<dynamic> resources, [
+  Set<Object> resources, [
   Object? error,
   StackTrace? stackTrace,
 ]);
 
 /// Default `DisposeBag` logger
+// ignore: prefer_function_declarations_over_variables
 final Logger disposeBagDefaultLogger =
     (bag, result, resources, [error, stackTrace]) {
   switch (result) {
