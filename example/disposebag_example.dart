@@ -4,10 +4,18 @@ import 'package:disposebag/disposebag.dart';
 
 List<Object> get _disposables {
   final controllers = <StreamController>[
-    StreamController<int>()..add(1)..add(2),
-    StreamController<int>(sync: true)..add(3)..add(4),
-    StreamController<int>.broadcast()..add(5)..add(6),
-    StreamController<String>.broadcast(sync: true)..add('7')..add('8'),
+    StreamController<int>()
+      ..add(1)
+      ..add(2),
+    StreamController<int>(sync: true)
+      ..add(3)
+      ..add(4),
+    StreamController<int>.broadcast()
+      ..add(5)
+      ..add(6),
+    StreamController<String>.broadcast(sync: true)
+      ..add('7')
+      ..add('8'),
   ];
   final subscriptions = <StreamSubscription>[
     Stream.periodic(const Duration(milliseconds: 100), (i) => i)
