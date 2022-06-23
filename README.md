@@ -9,7 +9,7 @@
 [![codecov](https://codecov.io/gh/hoc081098/disposebag/branch/master/graph/badge.svg)](https://codecov.io/gh/hoc081098/disposebag)
 [![Build Status](https://travis-ci.org/hoc081098/disposebag.svg?branch=master)](https://travis-ci.org/hoc081098/disposebag)
 [![GitHub](https://img.shields.io/github/license/hoc081098/disposebag?color=4EB1BA)](https://opensource.org/licenses/MIT)
-[![Style](https://img.shields.io/badge/style-pedantic-40c4ff.svg)](https://github.com/dart-lang/pedantic)
+[![Style](https://img.shields.io/badge/style-lints-40c4ff.svg)](https://pub.dev/packages/lints)
 
 A package helps to cancel StreamSubscriptions and close Sinks.
 
